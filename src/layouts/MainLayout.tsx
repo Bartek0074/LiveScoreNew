@@ -1,18 +1,40 @@
 import styles from './MainLayout.module.scss';
 
+import { useEffect } from 'react';
+
+import Cookies from 'universal-cookie';
+import { CookiesEnum } from '../utils/cookies';
+
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../utils/routes';
 
+import { usePinnedLeagueIdsStore } from '../data/pinnedLeagueIds/store';
+
 import { IoFootball, IoLogoGithub } from 'react-icons/io5';
+
+const defaultPinnedLeagues = [39, 140, 78, 135, 61, 106, 107];
 
 export default function MainLayout() {
 	const navigate = useNavigate();
+	const cookies = new Cookies();
+
+	const { getPinnedLeagueIds } = usePinnedLeagueIdsStore();
 
 	const navToHome = () => {
 		navigate(AppRoutes.home);
 	};
 
 	const currentYear = new Date().getFullYear();
+
+	useEffect(() => {
+		if (!cookies.get(CookiesEnum.firstVisit)) {
+			cookies.set(CookiesEnum.firstVisit, 'true', { path: '/' });
+			cookies.set(CookiesEnum.pinnedLeagues, defaultPinnedLeagues, {
+				path: '/',
+			});
+		}
+		getPinnedLeagueIds();
+	}, []);
 
 	return (
 		<div className={styles.mainLayout}>

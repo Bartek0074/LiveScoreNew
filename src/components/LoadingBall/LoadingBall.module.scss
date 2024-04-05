@@ -1,0 +1,90 @@
+@use '../../styles/variables' as *;
+
+.loadingBall {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	height: fit-content;
+	svg {
+		display: block;
+		margin: 0 auto;
+		path {
+			animation-duration: 1s;
+			animation-name: pulse;
+			animation-iteration-count: infinite;
+			fill: $primaryColor;
+		}
+		.path7 {
+			animation-delay: -1s;
+		}
+		.path6 {
+			animation-delay: -0.875s;
+		}
+		.path5 {
+			animation-delay: -0.75s;
+		}
+		.path4 {
+			animation-delay: -0.625s;
+		}
+		.path3 {
+			animation-delay: -0.5s;
+		}
+		.path2 {
+			animation-delay: -0.375s;
+		}
+		.path1 {
+			animation-delay: -0.25s;
+		}
+		.path0 {
+			animation-delay: -0.125s;
+		}
+	}
+	.text {
+		color: $primaryColor;
+		font-weight: 400;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		text-align: center;
+	}
+	&Small {
+		svg {
+			width: 50px;
+		}
+		.text {
+			font-size: 12px;
+			margin-top: -4px;
+		}
+	}
+	&Medium {
+		svg {
+			width: 75px;
+		}
+		.text {
+			font-size: 14px;
+			margin-top: -4px;
+		}
+	}
+	&Large {
+		svg {
+			width: 100px;
+		}
+		.text {
+			font-size: 16px;
+			margin-top: -6px;
+		}
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 0.1;
+	}
+	30% {
+		opacity: 0.8;
+	}
+	100% {
+		opacity: 0.1;
+	}
+}

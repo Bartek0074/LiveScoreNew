@@ -1,0 +1,41 @@
+@use '../../../styles/variables' as *;
+
+.country {
+	.countryName {
+		display: flex;
+		justify-content: space-between;
+		padding: 3px 6px;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+		.text {
+			color: $blackFontColor;
+			font-weight: 300;
+			font-size: 15px;
+		}
+		.icon {
+			opacity: 0;
+			transition: opacity 0.1s, transform 0.3s;
+		}
+		&:hover {
+			background-color: $countryBarBackgroundHover;
+			.icon {
+				opacity: 1;
+			}
+		}
+	}
+	.leagueList {
+		border-bottom: 1px solid $grayBorderColor;
+		padding: 8px 4px;
+		margin-bottom: 8px;
+	}
+	&Open {
+		.countryName {
+			background-color: $countryBarBackgroundHover;
+			.icon {
+				opacity: 1;
+				transform: rotate(180deg);
+			}
+		}
+	}
+}

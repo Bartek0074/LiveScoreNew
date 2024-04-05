@@ -1,0 +1,42 @@
+@use '../../../styles/variables' as *;
+
+.league {
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 4px;
+	.text {
+		font-size: 14px;
+		color: $grayFontColor;
+		font-weight: 300;
+		cursor: pointer;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		&:hover {
+			color: $blackFontColor;
+		}
+	}
+	.iconWrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 8px;
+		padding: 1.5px;
+		.icon {
+			font-size: 14px;
+			color: $grayFontColor;
+			cursor: pointer;
+			transition: color 0.3s;
+			&:hover {
+				color: $goldStarColor;
+			}
+		}
+	}
+	&Pinned {
+		.iconWrapper {
+			.icon {
+				color: $goldStarColor;
+			}
+		}
+	}
+}
