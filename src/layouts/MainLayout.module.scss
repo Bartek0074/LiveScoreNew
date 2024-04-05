@@ -1,0 +1,95 @@
+@use '../styles/variables' as *;
+
+.mainLayout {
+	display: grid;
+	height: 100vh;
+	grid-template-rows: auto 1fr auto;
+	.header {
+		position: sticky;
+		top: 0;
+		padding: 12px 18px;
+		background-color: $primaryColor;
+		.name {
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			.icon,
+			p {
+				color: $whiteFontColor;
+				transition: color 0.3s;
+			}
+			.icon {
+				margin-right: 2px;
+				font-size: 22px;
+				transform: translateY(-0.5px);
+			}
+			p {
+				font-size: 18px;
+				text-transform: uppercase;
+				font-weight: 500;
+			}
+			&:hover {
+				.icon,
+				p {
+					color: $whiteFontColorHover;
+				}
+			}
+		}
+	}
+	.footer {
+		position: sticky;
+		bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 4px 0;
+		background-color: $primaryColor;
+		p {
+			text-align: center;
+			font-size: 14px;
+			color: $whiteFontColor;
+			font-weight: 300;
+		}
+		.link {
+			margin-left: 2.5px;
+			a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: $whiteFontColor;
+				transition: color 0.3s;
+				font-size: 16px;
+				&:hover {
+					color: $whiteFontColorHover;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.mainLayout {
+		.header {
+			padding: 16px 24px;
+			.name {
+				.icon {
+					font-size: 25px;
+				}
+				p {
+					font-size: 22px;
+				}
+			}
+		}
+        .footer{
+            padding: 6px 0;
+            p{
+                font-size: 16px;
+            }
+            .link{
+                a{
+                    font-size: 18px;
+                }
+            }
+        }
+	}
+}
