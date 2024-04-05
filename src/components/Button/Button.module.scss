@@ -1,0 +1,79 @@
+@use '../../styles/variables' as *;
+
+.button {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	background-color: $primaryColor;
+	color: $backgroundColor;
+	&:hover {
+		background-color: $primaryColorHover;
+	}
+
+	&Disabled {
+		background-color: $backgroundColor;
+		border: 1px solid $primaryColor;
+		color: $primaryColor;
+		cursor: not-allowed;
+		&:hover {
+			background-color: $backgroundColor;
+		}
+	}
+
+	&--extra-small {
+		padding: 1px 3px;
+		font-size: 12px;
+		border-radius: 3px;
+	}
+
+	&--small {
+		padding: 2px 4px;
+		font-size: 14px;
+		border-radius: 4px;
+	}
+
+	&--medium {
+		padding: 4px 8px;
+		font-size: 15px;
+		border-radius: 5px;
+	}
+
+	&--large {
+		padding: 5px 10px;
+		font-size: 17px;
+		border-radius: 5px;
+	}
+}
+
+@media (min-width: 576px) {
+	.button {
+		&--extra-small {
+			padding: 2px 6px;
+			font-size: 12px;
+			border-radius: 3px;
+		}
+
+		&--small {
+			padding: 3px 9px;
+			font-size: 14px;
+			border-radius: 4px;
+		}
+
+		&--medium {
+			padding: 5px 15px;
+			font-size: 16px;
+			border-radius: 5px;
+		}
+
+		&--large {
+			padding: 6px 18px;
+			font-size: 18px;
+			border-radius: 5px;
+		}
+	}
+}

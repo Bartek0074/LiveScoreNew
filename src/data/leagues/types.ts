@@ -19,9 +19,12 @@ interface Country {
 
 interface LeagueProps {
 	id: number;
-	logo: string;
 	name: string;
-	type: string;
+	country: string;
+	logo: string;
+	flag: string;
+	season: number;
+	round: string;
 }
 
 interface Season {

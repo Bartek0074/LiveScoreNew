@@ -1,0 +1,45 @@
+@use '../variables' as *;
+
+.ant-picker {
+	border-color: $primaryColor;
+	&-focused {
+		border-color: $primaryColor !important;
+	}
+	&:focus,
+	&:hover {
+		border-color: $primaryColor !important;
+	}
+	&:hover {
+		.ant-picker-suffix {
+			opacity: 1 !important;
+		}
+	}
+	&-input {
+		color: $primaryColor;
+		input {
+			font-size: 16px !important;
+			font-weight: 350;
+		}
+		.ant-picker-suffix {
+			color: $primaryColor;
+			font-size: 16px;
+		}
+		.ant-picker-clear {
+			display: none;
+		}
+	}
+}
+
+.ant-picker-now-btn {
+	color: $primaryColor !important;
+	&:hover {
+		color: $primaryColorHover !important;
+	}
+}
+
+.ant-picker-cell-selected {
+	.ant-picker-cell-inner {
+		background-color: $primaryColor !important;
+		border-color: $primaryColor !important;
+	}
+}

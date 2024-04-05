@@ -1,9 +1,46 @@
 .homePage {
-    height: 100%;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    .sidebar {
-        overflow-y: scroll;
-    }
+	height: 100%;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	.sidebar {
+		overflow-y: scroll;
+	}
+	.content {
+        display: grid;
+        grid-template-rows: auto 1fr;
+		padding: 8px;
+		overflow-y: scroll;
+		.buttons {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			gap: 4px;
+			margin-bottom: 8px;
+			flex-wrap: wrap;
+			.datePicker {
+				margin-left: auto;
+			}
+		}
+		.loading {
+            display: flex;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		.leagueList {
+			display: flex;
+		}
+	}
 }
 
+@media (min-width: 578px) {
+	.homePage {
+		.content {
+			padding: 12px;
+			.buttons {
+				gap: 12px;
+			}
+		}
+	}
+}
