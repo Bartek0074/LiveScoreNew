@@ -1,7 +1,7 @@
-import { League, CountryProps } from './types';
+import { CountryLeague, CountryProps } from './types';
 
-export const returnCountries = (leagues: League[]) => {
-	const countries = leagues.reduce((acc: CountryProps[], league: League) => {
+export const returnCountries = (leagues: CountryLeague[]) => {
+	const countries = leagues.reduce((acc: CountryProps[], league: CountryLeague) => {
 		const { country } = league;
 		const countryIndex = acc.findIndex((c) => c.country === country.name);
 

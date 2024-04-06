@@ -1,15 +1,15 @@
 import { create } from 'zustand';
 
-import { League } from './types';
+import { CountryLeague } from './types';
 
 import { fetchFromAPI } from '../helpers/fetchFromApi';
 
 interface LeaguesStoreState {
-	leagues: League[];
+	leagues: CountryLeague[];
 }
 
 interface LeaguesStoreActions {
-    getRemoteLeagues: () => Promise<League[]>;
+    getRemoteLeagues: () => Promise<CountryLeague[]>;
 }
 
 type LeaguesStore = LeaguesStoreState & LeaguesStoreActions;

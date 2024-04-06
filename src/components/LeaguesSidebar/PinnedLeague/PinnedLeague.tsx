@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { usePinnedLeagueIdsStore } from '../../../data/pinnedLeagueIds/store';
 
-import { League as LeagueType } from '../../../data/leagues/types';
+import { CountryLeague } from '../../../data/leagues/types';
 import { AppRoutes } from '../../../utils/routes';
 
 import { RiStarFill } from 'react-icons/ri';
 
 interface Props {
-	league: LeagueType;
+	league: CountryLeague;
 }
 
 export default function PinnedLeague({ league }: Props) {

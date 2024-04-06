@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
 import { useLeaguesStore } from '../../data/leagues/store';
-import { CountryProps, League as LeagueProps } from '../../data/leagues/types';
+import { CountryProps, CountryLeague } from '../../data/leagues/types';
 
 import Country from './Country/Country';
 import LoadingBall from '../LoadingBall/LoadingBall';
@@ -18,7 +18,7 @@ export default function LeaguesSidebar() {
 
 	const [countries, setCountries] = useState<CountryProps[]>([]);
 
-	const [pinnedLeagues, setPinnedLeagues] = useState<LeagueProps[]>([]);
+	const [pinnedLeagues, setPinnedLeagues] = useState<CountryLeague[]>([]);
 
 	const [loading, setLoading] = useState(true);
 
@@ -35,7 +35,7 @@ export default function LeaguesSidebar() {
 	}, [leagues]);
 
 	useEffect(() => {
-		let newPinnedLeagues: LeagueProps[] = [];
+		let newPinnedLeagues: CountryLeague[] = [];
 
 		pinnedLeagueIds.forEach((id) => {
 			const league = leagues.find((league) => league.league.id === id);
@@ -48,7 +48,7 @@ export default function LeaguesSidebar() {
 	if (loading)
 		return (
 			<div className={styles.loading}>
-				<LoadingBall />
+				<LoadingBall size='small' />
 			</div>
 		);
 
