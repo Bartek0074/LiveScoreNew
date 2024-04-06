@@ -103,23 +103,15 @@ export default function HomePage() {
 		};
 
 		const fetchDataPeriodically = () => {
-			fetchDataInterval = setInterval(fetchData, 30000);
+			fetchDataInterval = setInterval(fetchData, 5000);
 		};
 
 		fetchData();
-		fetchDataPeriodically();
+		// fetchDataPeriodically();
 
 		return () => {
 			clearInterval(fetchDataInterval);
 		};
-	}, [date]);
-
-	useEffect(() => {
-		const fetchDataInterval = setInterval(() => {
-			if (date) getRemoteMatches(date);
-		}, 25000);
-
-		return () => clearInterval(fetchDataInterval);
 	}, [date]);
 
 	useEffect(() => {
@@ -130,7 +122,6 @@ export default function HomePage() {
 				statuses
 			);
 			setSortedMatchesInLeague(newGrupedMatchesInLeague);
-			// setLoading(false);
 		}
 	}, [matches, pinnedLeagueIds, statuses]);
 
@@ -140,19 +131,22 @@ export default function HomePage() {
 				<LeaguesSidebar />
 			</div>
 			<div className={styles.content}>
-				<div className={styles.buttons}>
-					{buttons.map((button, index) => (
-						<div className={styles.button} key={index}>
-							<Button
-								text={button.text}
-								onClick={() => setFilter(button.filter)}
-							/>
-						</div>
-					))}
+				<div className={styles.topBar}>
+					<div className={styles.buttons}>
+						{buttons.map((button, index) => (
+							<div className={styles.button} key={index}>
+								<Button
+									text={button.text}
+									onClick={() => setFilter(button.filter)}
+								/>
+							</div>
+						))}
+					</div>
 					<div className={styles.datePicker}>
 						<DatePicker
 							value={dayjs(date)}
 							onChange={(e: any) => setDate(e?.$d)}
+							style={{width: '100%'}}
 						/>
 					</div>
 				</div>
