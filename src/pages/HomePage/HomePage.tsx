@@ -107,12 +107,18 @@ export default function HomePage() {
 			}
 		};
 
+		const refetchData = async () => {
+			if (date) {
+				await getRemoteMatches(date);
+			}
+		};
+
 		const fetchDataPeriodically = () => {
-			fetchDataInterval = setInterval(fetchData, 5000);
+			fetchDataInterval = setInterval(refetchData, 25000);
 		};
 
 		fetchData();
-		// fetchDataPeriodically();
+		fetchDataPeriodically();
 
 		return () => {
 			clearInterval(fetchDataInterval);
