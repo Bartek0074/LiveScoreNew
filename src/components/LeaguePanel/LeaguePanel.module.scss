@@ -1,0 +1,85 @@
+@use '../../styles/variables' as *;
+
+.leaguePanel {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 10px 4px;
+	border-radius: 4px;
+	background-color: $leaguePanelBackground;
+	.leftSection {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.flag {
+			img {
+				height: 14px;
+				transform: translateY(1px);
+			}
+		}
+		.country {
+			margin-left: 6px;
+			font-size: 14px;
+			color: $grayFontColor;
+			font-weight: 450;
+			text-transform: uppercase;
+		}
+		.league {
+			margin-left: 3px;
+			font-size: 14px;
+			color: $grayFontColor;
+			&:hover {
+				color: $grayFontColorHover;
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+	}
+	.rightSection {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.iconWrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.icon {
+				font-size: 17px;
+				color: $goldStarColor;
+				cursor: pointer;
+				transition: color 0.3s;
+				&:hover {
+					color: $grayFontColor;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.leaguePanel {
+		padding: 8px 14px 6px;
+		border-radius: 6px;
+		.leftSection {
+			.flag {
+				img {
+					height: 15px;
+				}
+			}
+			.country {
+				font-size: 16px;
+			}
+			.league {
+				font-size: 16px;
+			}
+		}
+		.rightSection {
+			.iconWrapper {
+				.icon {
+					font-size: 19px;
+				}
+			}
+		}
+	}
+}

@@ -5,8 +5,11 @@ import dayjs from 'dayjs';
 
 import LoadingBall from '../../components/LoadingBall/LoadingBall';
 import LeaguesSidebar from '../../components/LeaguesSidebar/LeaguesSidebar';
+import LeaguePanel from '../../components/LeaguePanel/LeaguePanel';
 import Button from '../../components/Button/Button';
-import { DatePicker } from 'antd';
+import { DatePicker, Result } from 'antd';
+
+import { RiSearchLine } from 'react-icons/ri';
 
 import { useMatchesStore } from '../../data/matches/store';
 import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
@@ -30,6 +33,7 @@ export default function HomePage() {
 
 	const [statuses, setStatuses] = useState<MatchStatuses[]>([]);
 	const [filter, setFilter] = useState<MatchFilters>(MatchFilters.All);
+	const [date, setDate] = useState<Date | null>(new Date());
 
 	const [loading, setLoading] = useState(true);
 
@@ -37,7 +41,7 @@ export default function HomePage() {
 		MatchesInLeague[]
 	>([]);
 
-	const [date, setDate] = useState<Date | null>(new Date());
+	const [isSortedListEmpty, setIsSortedListEmpty] = useState<boolean>(false);
 
 	useEffect(() => {
 		switch (filter) {
@@ -125,6 +129,15 @@ export default function HomePage() {
 		}
 	}, [matches, pinnedLeagueIds, statuses]);
 
+	useEffect(() => {
+		if (sortedMatchesIneLeague.length) {
+			const isSortedListEmpty = sortedMatchesIneLeague.every(
+				(league) => league.matches.length === 0
+			);
+			setIsSortedListEmpty(isSortedListEmpty);
+		}
+	}, [sortedMatchesIneLeague]);
+
 	return (
 		<div className={styles.homePage}>
 			<div className={styles.sidebar}>
@@ -147,7 +160,7 @@ export default function HomePage() {
 						<DatePicker
 							value={dayjs(date)}
 							onChange={(e: any) => setDate(e?.$d)}
-							style={{width: '100%'}}
+							style={{ width: '100%' }}
 						/>
 					</div>
 				</div>
@@ -157,7 +170,29 @@ export default function HomePage() {
 					</div>
 				) : (
 					<div className={styles.leagueList}>
-						<p>List</p>
+						{!isSortedListEmpty ? (
+							sortedMatchesIneLeague.map((league) => {
+								if (league.league && league.matches.length) {
+									return (
+										<div key={league.leagueId}>
+											<LeaguePanel league={league.league} />
+											{league.matches.map((match) => (
+												<div key={match.fixture.id}>{match.fixture.id}</div>
+											))}
+										</div>
+									);
+								}
+								return null;
+							})
+						) : (
+							<div className={styles.noMatchesInfo}>
+								<Result
+									title='No matches found for this date'
+									subTitle='Note: In this view, only pinned leagues are displayed. If you want to see more matches, please pin more leagues.'
+									icon={<RiSearchLine />}
+								/>
+							</div>
+						)}
 					</div>
 				)}
 			</div>

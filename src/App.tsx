@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 import { AppRoutes } from './utils/routes';
 
 import MainLayout from './layouts/MainLayout';
@@ -19,7 +20,17 @@ function App() {
 			],
 		},
 	]);
-	return <RouterProvider router={router} />;
+	return (
+		<ConfigProvider
+			theme={{
+				token: {
+					fontFamily: 'Roboto Condensed',
+				},
+			}}
+		>
+			<RouterProvider router={router} />
+		</ConfigProvider>
+	);
 }
 
 export default App;

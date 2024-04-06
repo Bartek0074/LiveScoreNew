@@ -1,0 +1,21 @@
+@use '../variables' as *;
+
+.ant-result {
+	.ant-result-icon {
+		color: $primaryColor;
+		font-size: 90px;
+		margin-bottom: 0;
+	}
+	.ant-result-title {
+        margin-top: 0;
+		color: $grayFontColor;
+	}
+}
+
+@media (min-width: 576px) {
+    .ant-result {
+        .ant-result-icon {
+            font-size: 112px;
+        }
+    }
+}
