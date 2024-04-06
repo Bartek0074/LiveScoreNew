@@ -35,7 +35,7 @@
 			font-size: 12px;
 			color: $redColor;
 			.apostrophe {
-				animation: apostropheClick 1.5s infinite;
+				animation: pulse 1.5s infinite;
 			}
 		}
 	}
@@ -81,19 +81,48 @@
 				}
 			}
 			.score {
+				display: flex;
+				align-items: center;
 				margin-left: auto;
 				padding: 0 12px;
 				font-weight: 450;
 				font-size: 13px;
+				.goalInfo {
+					display: none;
+					margin-right: 12px;
+					animation: pulse 3s infinite;
+					color: $redColor;
+				}
 				&Live {
 					color: $redColor;
 				}
 			}
+			&Score {
+				.team {
+					.teamName {
+						color: $redFontColor;
+						&:hover {
+							color: $redFontColorHover;
+						}
+					}
+				}
+				.score {
+					.goalInfo {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+	&Change {
+		background-color: $matchPanelBackgroungAction;
+		&:hover {
+			background-color: $matchPanelBackgroundActionHover;
 		}
 	}
 }
 
-@keyframes apostropheClick {
+@keyframes pulse {
 	0% {
 		opacity: 1;
 	}

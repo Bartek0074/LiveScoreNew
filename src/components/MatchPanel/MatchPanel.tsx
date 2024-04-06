@@ -7,6 +7,7 @@ import ImageComponent from '../ImageComponent/ImageComponent';
 
 import { MatchStatuses } from '../../utils/matchStatuses';
 import { Match } from '../../data/matches/types';
+import { useMatchesStore } from '../../data/matches/store';
 
 import { formatDate, getMatchTime } from '../../data/matches/helpers';
 
@@ -16,8 +17,11 @@ interface Props {
 
 export default function MatchPanel({ match }: Props) {
 	const navigate = useNavigate();
-	const { fixture, teams, goals, score } = match;
+
+	const { fixture, teams, goals } = match;
 	const statusShort = fixture?.status?.short;
+
+	const { previousFetchMatches } = useMatchesStore();
 
 	const getTeamNameClass = (winner: boolean | undefined) =>
 		classNames(styles.teamName, {
@@ -80,6 +84,18 @@ export default function MatchPanel({ match }: Props) {
 		}
 	};
 
+	const matchFromPrevFetch: Match | undefined = previousFetchMatches.find(
+		(prevMatch) => prevMatch.fixture.id === fixture?.id
+	);
+
+	let hasHomeTeamScored = false;
+	let hasAwayTeamScored = false;
+
+	if (matchFromPrevFetch) {
+		hasHomeTeamScored = matchFromPrevFetch.goals.home === goals?.home - 1;
+		hasAwayTeamScored = matchFromPrevFetch.goals.away === goals?.away - 1;
+	}
+
 	const isMatchLive =
 		statusShort === MatchStatuses.FirstHalf ||
 		statusShort === MatchStatuses.Halftime ||
@@ -92,9 +108,20 @@ export default function MatchPanel({ match }: Props) {
 		[styles.scoreLive]: isMatchLive,
 	});
 
+	const matchPanelClassess = classNames(styles.matchPanel, {
+		[styles.matchPanelChange]: hasHomeTeamScored || hasAwayTeamScored,
+	});
+
+	const homeClassess = classNames(styles.home, {
+		[styles.homeScore]: hasHomeTeamScored,
+	});
+	const awayClassess = classNames(styles.away, {
+		[styles.awayScore]: hasAwayTeamScored,
+	});
+
 	return (
 		<div
-			className={styles.matchPanel}
+			className={matchPanelClassess}
 			onClick={() => navigate(`/match/${fixture?.id}`)}
 		>
 			<div className={styles.status}>
@@ -112,7 +139,7 @@ export default function MatchPanel({ match }: Props) {
 				{getStatusMessage()}
 			</div>
 			<div className={styles.content}>
-				<div className={styles.home}>
+				<div className={homeClassess}>
 					<div className={styles.team}>
 						<div className={styles.logo}>
 							<ImageComponent
@@ -132,12 +159,13 @@ export default function MatchPanel({ match }: Props) {
 						</div>
 					</div>
 					<div className={scoreClassess}>
+						<p className={styles.goalInfo}>GOAL</p>
 						<p className={styles.number}>
 							{goals?.home !== null ? goals?.home : '-'}
 						</p>
 					</div>
 				</div>
-				<div className={styles.away}>
+				<div className={awayClassess}>
 					<div className={styles.team}>
 						<div className={styles.logo}>
 							<ImageComponent
@@ -157,6 +185,7 @@ export default function MatchPanel({ match }: Props) {
 						</div>
 					</div>
 					<div className={scoreClassess}>
+						<p className={styles.goalInfo}>GOAL</p>
 						<p className={styles.number}>
 							{goals?.away !== null ? goals?.away : '-'}
 						</p>
