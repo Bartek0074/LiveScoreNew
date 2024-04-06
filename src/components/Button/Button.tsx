@@ -7,6 +7,7 @@ interface Props {
 	text: string;
 	size?: 'extra-small' | 'small' | 'medium' | 'large';
 	disabled?: boolean;
+	active?: boolean;
 }
 
 export default function Button({
@@ -15,9 +16,11 @@ export default function Button({
 	text,
 	size = 'medium',
 	disabled = false,
+	active = false,
 }: Props) {
 	const buttonClass = classNames(styles.button, {
         [styles.buttonDisabled]: disabled,
+		[styles.buttonActive]: active,
 		[styles[`button--${size}`]]: size,
 	});
 

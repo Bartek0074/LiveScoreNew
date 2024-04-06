@@ -24,6 +24,12 @@
 			background-color: $backgroundColor;
 		}
 	}
+	&Active {
+		background-color: $secondaryColor;
+		&:hover {
+			background-color: $secondaryColorHover;
+		}
+	}
 
 	&--extra-small {
 		padding: 1px 3px;

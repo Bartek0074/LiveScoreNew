@@ -138,6 +138,7 @@ export default function HomePage() {
 								<Button
 									text={button.text}
 									onClick={() => setFilter(button.filter)}
+									active={filter === button.filter}
 								/>
 							</div>
 						))}
