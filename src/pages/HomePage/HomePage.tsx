@@ -92,10 +92,34 @@ export default function HomePage() {
 	}, [filter]);
 
 	useEffect(() => {
-		if (date) {
-			setLoading(true);
-			getRemoteMatches(date);
-		}
+		let fetchDataInterval: NodeJS.Timeout;
+
+		const fetchData = async () => {
+			if (date) {
+				setLoading(true);
+				await getRemoteMatches(date);
+				setLoading(false);
+			}
+		};
+
+		const fetchDataPeriodically = () => {
+			fetchDataInterval = setInterval(fetchData, 30000);
+		};
+
+		fetchData();
+		fetchDataPeriodically();
+
+		return () => {
+			clearInterval(fetchDataInterval);
+		};
+	}, [date]);
+
+	useEffect(() => {
+		const fetchDataInterval = setInterval(() => {
+			if (date) getRemoteMatches(date);
+		}, 25000);
+
+		return () => clearInterval(fetchDataInterval);
 	}, [date]);
 
 	useEffect(() => {
@@ -106,10 +130,9 @@ export default function HomePage() {
 				statuses
 			);
 			setSortedMatchesInLeague(newGrupedMatchesInLeague);
-			setLoading(false);
+			// setLoading(false);
 		}
 	}, [matches, pinnedLeagueIds, statuses]);
-
 
 	return (
 		<div className={styles.homePage}>
