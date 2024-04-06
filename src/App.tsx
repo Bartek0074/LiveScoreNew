@@ -17,6 +17,7 @@ function App() {
 				{ path: AppRoutes.league, element: <p>League</p> },
 				{ path: AppRoutes.match, element: <p>Match</p> },
 				{ path: AppRoutes.player, element: <p>Player</p> },
+				{ path: AppRoutes.team, element: <p>Team</p> },
 			],
 		},
 	]);

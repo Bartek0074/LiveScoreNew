@@ -3,4 +3,5 @@ export enum AppRoutes {
 	match = '/match/:id',
 	league = '/league/:id',
 	player = '/player/:id',
+	team = '/team/:id',
 }

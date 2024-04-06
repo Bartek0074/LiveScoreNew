@@ -1,13 +1,10 @@
 import styles from './MatchPanel.module.scss';
 import classNames from 'classnames';
-
 import { useNavigate } from 'react-router-dom';
-
 import { MatchStatuses } from '../../utils/matchStatuses';
-
 import ImageComponent from '../ImageComponent/ImageComponent';
-
 import { Match } from '../../data/matches/types';
+import { formatDate, getMatchTime } from '../../data/matches/helpers';
 
 interface Props {
 	match: Match;
@@ -15,305 +12,257 @@ interface Props {
 
 export default function MatchPanel({ match }: Props) {
 	const navigate = useNavigate();
+	const { fixture, teams, goals, score } = match;
 
 	const teamHomeNameClass = classNames(styles.teamName, {
-		[styles.teamNameWinner]: match?.teams?.home?.winner,
+		[styles.teamNameWinner]: teams?.home?.winner,
+	});
+	const teamAwayNameClass = classNames(styles.teamName, {
+		[styles.teamNameWinner]: teams?.away?.winner,
 	});
 
-	const teamAwayNameClass = classNames(styles.teamName, {
-		[styles.teamNameWinner]: match?.teams?.away?.winner,
+	const getStatusMessage = () => {
+		switch (fixture?.status?.short) {
+			case MatchStatuses.TimeToBeDefined:
+				return <p>TBD</p>;
+			case MatchStatuses.NotStarted:
+				return <p>{getMatchTime(fixture?.date)}</p>;
+			case MatchStatuses.FirstHalf:
+				return (
+					<p className={styles.timeLive}>
+						{fixture?.status?.elapsed}
+						<span className={styles.apostrophe}>'</span>
+					</p>
+				);
+			case MatchStatuses.Halftime:
+				return <p className={styles.timeLive}>Half Time</p>;
+			case MatchStatuses.SecondHalf:
+				return (
+					<p className={styles.timeLive}>
+						{fixture?.status?.elapsed}{' '}
+						<span className={styles.apostrophe}>'</span>
+					</p>
+				);
+			case MatchStatuses.ExtraTime:
+				return (
+					<p className={styles.timeLive}>
+						ET
+						<br />
+						{fixture?.status?.elapsed}{' '}
+						<span className={styles.apostrophe}>'</span>
+					</p>
+				);
+			case MatchStatuses.BreakTime:
+				return <p className={styles.timeLive}>Break Time</p>;
+			case MatchStatuses.PenaltyInProgress:
+				return <p className={styles.timeLive}>Pen.</p>;
+			case MatchStatuses.Suspended:
+				return <p>Suspended</p>;
+			case MatchStatuses.Finished:
+				return <p>Finished</p>;
+			case MatchStatuses.FinishedAfterExtraTime:
+				return <p>AET</p>;
+			case MatchStatuses.FinishedAfterPenaltyShootout:
+				return <p>Pen.</p>;
+			case MatchStatuses.Postponed:
+				return <p>Postponed</p>;
+			case MatchStatuses.Cancelled:
+				return <p>Cancelled</p>;
+			case MatchStatuses.Abandoned:
+				return <p>Abandoned</p>;
+			case MatchStatuses.TechnicalLoss:
+				return <p>Technical Loss</p>;
+			default:
+				return null;
+		}
+	};
+
+	const isMatchLive =
+		match?.fixture?.status?.short === MatchStatuses.FirstHalf ||
+		match?.fixture?.status?.short === MatchStatuses.Halftime ||
+		match?.fixture?.status?.short === MatchStatuses.SecondHalf ||
+		match?.fixture?.status?.short === MatchStatuses.ExtraTime ||
+		match?.fixture?.status?.short === MatchStatuses.PenaltyInProgress;
+
+	const scoresClasses = classNames(styles.scores, {
+		[styles.scoresLive]: isMatchLive,
 	});
 
 	return (
 		<div
 			className={styles.matchPanel}
-			onClick={() => {
-				navigate(`/match/${match?.fixture?.id}`);
-			}}
+			onClick={() => navigate(`/match/${fixture?.id}`)}
 		>
-			<div className={styles.time}>
-				{(match?.fixture?.status?.short === 'TBD' ||
-					match?.fixture?.status?.short === 'NS' ||
-					match?.fixture?.status?.short === 'FT' ||
-					match?.fixture?.status?.short === 'AET' ||
-					match?.fixture?.status?.short === 'PEN' ||
-					match?.fixture?.status?.short === 'PST' ||
-					match?.fixture?.status?.short === 'CANC' ||
-					match?.fixture?.status?.short === 'ABD' ||
-					match?.fixture?.status?.short === 'AWD') && (
+			<div className={styles.status}>
+				{(match?.fixture?.status?.short === MatchStatuses.TimeToBeDefined ||
+					match?.fixture?.status?.short === MatchStatuses.NotStarted ||
+					match?.fixture?.status?.short === MatchStatuses.Finished ||
+					match?.fixture?.status?.short ===
+						MatchStatuses.FinishedAfterExtraTime ||
+					match?.fixture?.status?.short ===
+						MatchStatuses.FinishedAfterPenaltyShootout ||
+					match?.fixture?.status?.short === MatchStatuses.Postponed ||
+					match?.fixture?.status?.short === MatchStatuses.Cancelled ||
+					match?.fixture?.status?.short === MatchStatuses.Abandoned ||
+					match?.fixture?.status?.short === MatchStatuses.TechnicalLoss) && (
 					<p className={styles.date}>
-						{/* {getDateWithoutHour(match?.fixture?.date)} */}
+						{formatDate(new Date(match?.fixture?.date))}
 					</p>
 				)}
-				{match?.fixture?.status?.short === 'TBD' && <p>TBD</p>}
-				{/* {match?.fixture?.status?.short === 'NS' && (
-					<p>{getMatchTime(match?.fixture?.date)}</p>
-				)} */}
-				{match?.fixture?.status?.short === '1H' && (
-					<p className={styles.timeLive}>{match?.fixture?.status?.elapsed}'</p>
-				)}
-				{match?.fixture?.status?.short === 'HT' && (
-					<p className={styles.timeLive}>Half Time</p>
-				)}
-				{match?.fixture?.status?.short === '2H' && (
-					<p className={styles.timeLive}>{match?.fixture?.status?.elapsed}'</p>
-				)}
-				{match?.fixture?.status?.short === 'ET' && (
-					<p className={styles.timeLive}>
-						ET
-						<br />
-						{match?.fixture?.status?.elapsed}'
-					</p>
-				)}
-				{match?.fixture?.status?.short === 'BT' && (
-					<p className={styles.timeLive}>Break Time</p>
-				)}
-				{match?.fixture?.status?.short === 'P' && (
-					<p className={styles.timeLive}>Pen.</p>
-				)}
-				{match?.fixture?.status?.short === 'SUSP' && <p>Suspended</p>}
-				{match?.fixture?.status?.short === 'FT' && <p>Finished</p>}
-				{match?.fixture?.status?.short === 'AET' && <p>AET</p>}
-				{match?.fixture?.status?.short === 'PEN' && <p>Pen.</p>}
-				{match?.fixture?.status?.short === 'PST' && <p>Postponed</p>}
-				{match?.fixture?.status?.short === 'CANC' && <p>Cancelled</p>}
-				{match?.fixture?.status?.short === 'ABD' && <p>Abandoned</p>}
-				{match?.fixture?.status?.short === 'AWD' && <p>Technical Loss</p>}
-				{match?.fixture?.status?.short === 'LIVE' && (
-					<p className={styles.timeLive}>Awaiting Updates</p>
-				)}
+				{getStatusMessage()}
 			</div>
 			<div className={styles.teams}>
 				<div className={styles.team}>
 					<div className={styles.logo}>
 						<ImageComponent
-							src={match?.teams?.home?.logo}
-							alt={`${match?.teams?.home?.name} logo`}
+							src={teams?.home?.logo}
+							alt={`${teams?.home?.name} logo`}
 							loaderSize={12}
 						/>
 					</div>
-					<div className={teamHomeNameClass}>
-						<p>{match?.teams?.home?.name}</p>
+					<div
+						className={teamHomeNameClass}
+						onClick={(e) => {
+							e.stopPropagation();
+							navigate(`/team/${teams?.home?.id}`);
+						}}
+					>
+						<p>{teams?.home?.name}</p>
 					</div>
 				</div>
 				<div className={styles.team}>
 					<div className={styles.logo}>
 						<ImageComponent
-							src={match?.teams?.away?.logo}
-							alt={`${match?.teams?.away?.name} logo`}
+							src={teams?.away?.logo}
+							alt={`${teams?.away?.name} logo`}
 							loaderSize={12}
 						/>
 					</div>
-					<div className={teamAwayNameClass}>
-						<p>{match?.teams?.away?.name}</p>
+					<div
+						className={teamAwayNameClass}
+						onClick={(e) => {
+							e.stopPropagation();
+							navigate(`/team/${teams?.away?.id}`);
+						}}
+					>
+						<p>{teams?.away?.name}</p>
 					</div>
 				</div>
 			</div>
-			<div className={styles.scores}>
+			<div className={scoresClasses}>
 				<div className={styles.score}>
 					<div className={styles.scoreExtraTime}>
-						{match?.fixture?.status?.short === 'ET' && (
-							<p>{match?.goals?.home}</p>
-						)}
-						{match?.fixture?.status?.short === 'P' && (
-							<p>{match?.goals?.home}</p>
-						)}
-						{match?.fixture?.status?.short === 'AET' && (
-							<p>{match?.goals?.home}</p>
-						)}
-						{match?.fixture?.status?.short === 'PEN' && (
-							<p>
-								{match?.score?.penalty?.home > match?.score?.penalty?.away
-									? match?.goals?.home + 1
-									: match?.goals?.home}
-							</p>
+						{(fixture?.status?.short === MatchStatuses.ExtraTime ||
+							fixture?.status?.short === MatchStatuses.PenaltyInProgress) && (
+							<p>{goals?.home}</p>
 						)}
 					</div>
 					<div className={styles.scoreExtraTime}>
-						{match?.fixture?.status?.short === 'ET' && (
-							<p>{match?.goals?.away}</p>
-						)}
-						{match?.fixture?.status?.short === 'P' && (
-							<p>{match?.goals?.away}</p>
-						)}
-						{match?.fixture?.status?.short === 'AET' && (
-							<p>{match?.goals?.away}</p>
-						)}
-						{match?.fixture?.status?.short === 'PEN' && (
-							<p>
-								{match?.score?.penalty?.home < match?.score?.penalty?.away
-									? match?.goals?.away + 1
-									: match?.goals?.away}
-							</p>
+						{(fixture?.status?.short === MatchStatuses.ExtraTime ||
+							fixture?.status?.short === MatchStatuses.PenaltyInProgress) && (
+							<p>{goals?.away}</p>
 						)}
 					</div>
 				</div>
 				<div className={styles.score}>
 					<div className={styles.scoreFullTime}>
-						{match?.fixture?.status?.short === 'TBD' && <p>-</p>}
-						{match?.fixture?.status?.short === 'NS' && <p>-</p>}
-						{match?.fixture?.status?.short === '1H' && (
-							<p>{match?.goals?.home}</p>
+						{fixture?.status?.short === MatchStatuses.FirstHalf && (
+							<p>{goals?.home}</p>
 						)}
-						{match?.fixture?.status?.short === 'HT' && (
-							<p>{match?.goals?.home}</p>
+						{fixture?.status?.short === MatchStatuses.Halftime && (
+							<p>{goals?.home}</p>
 						)}
-						{match?.fixture?.status?.short === '2H' && (
-							<p>{match?.goals?.home}</p>
+						{fixture?.status?.short === MatchStatuses.SecondHalf && (
+							<p>{goals?.home}</p>
 						)}
-						{match?.fixture?.status?.short === 'ET' && (
+						{fixture?.status?.short === MatchStatuses.ExtraTime && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.home}
+								{score?.fulltime?.home}
 							</p>
 						)}
-						{match?.fixture?.status?.short === 'BT' && (
-							<p>{match?.goals?.home}</p>
-						)}
-						{match?.fixture?.status?.short === 'P' && (
+						{fixture?.status?.short === MatchStatuses.PenaltyInProgress && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.home}
+								{score?.fulltime?.home}
 							</p>
 						)}
-						{match?.fixture?.status?.short === 'SUSP' && (
-							<p>{match?.goals?.home}</p>
+						{fixture?.status?.short === MatchStatuses.Finished && (
+							<p>{score?.fulltime?.home}</p>
 						)}
-						{match?.fixture?.status?.short === 'FT' && (
-							<p>{match?.score?.fulltime?.home}</p>
-						)}
-						{match?.fixture?.status?.short === 'AET' && (
+						{fixture?.status?.short ===
+							MatchStatuses.FinishedAfterExtraTime && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.home}
+								{score?.fulltime?.home}
 							</p>
 						)}
-						{match?.fixture?.status?.short === 'PEN' && (
+						{fixture?.status?.short ===
+							MatchStatuses.FinishedAfterPenaltyShootout && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.home}
+								{score?.fulltime?.home}
 							</p>
-						)}
-						{match?.fixture?.status?.short === 'PST' && <p>-</p>}
-						{match?.fixture?.status?.short === 'CANC' && <p>-</p>}
-						{match?.fixture?.status?.short === 'ABD' && <p>-</p>}
-						{match?.fixture?.status?.short === 'AWD' && (
-							<p>{match?.goals?.home}</p>
-						)}
-						{match?.fixture?.status?.short === 'LIVE' && (
-							<p>{match?.goals?.home}</p>
 						)}
 					</div>
 					<div className={styles.scoreFullTime}>
-						{match?.fixture?.status?.short === 'NS' && <p>-</p>}
-						{match?.fixture?.status?.short === '1H' && (
-							<p>{match?.goals?.away}</p>
+						{fixture?.status?.short === MatchStatuses.FirstHalf && (
+							<p>{goals?.away}</p>
 						)}
-						{match?.fixture?.status?.short === 'HT' && (
-							<p>{match?.goals?.away}</p>
+						{fixture?.status?.short === MatchStatuses.Halftime && (
+							<p>{goals?.away}</p>
 						)}
-						{match?.fixture?.status?.short === '2H' && (
-							<p>{match?.goals?.away}</p>
+						{fixture?.status?.short === MatchStatuses.SecondHalf && (
+							<p>{goals?.away}</p>
 						)}
-						{match?.fixture?.status?.short === 'ET' && (
+						{fixture?.status?.short === MatchStatuses.ExtraTime && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.away}
+								{score?.fulltime?.away}
 							</p>
 						)}
-						{match?.fixture?.status?.short === 'BT' && (
-							<p>{match?.goals?.away}</p>
-						)}
-						{match?.fixture?.status?.short === 'P' && (
+						{fixture?.status?.short === MatchStatuses.PenaltyInProgress && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.away}
+								{score?.fulltime?.away}
 							</p>
 						)}
-						{match?.fixture?.status?.short === 'SUSP' && (
-							<p>{match?.goals?.away}</p>
+						{fixture?.status?.short === MatchStatuses.Finished && (
+							<p>{score?.fulltime?.away}</p>
 						)}
-						{match?.fixture?.status?.short === 'FT' && (
-							<p>{match?.score?.fulltime?.away}</p>
-						)}
-						{match?.fixture?.status?.short === 'AET' && (
+						{fixture?.status?.short ===
+							MatchStatuses.FinishedAfterExtraTime && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.away}
+								{score?.fulltime?.away}
 							</p>
 						)}
-						{match?.fixture?.status?.short === 'PEN' && (
+						{fixture?.status?.short ===
+							MatchStatuses.FinishedAfterPenaltyShootout && (
 							<p className={styles.scoreFullTimeNotBold}>
-								{match?.score?.fulltime?.away}
+								{score?.fulltime?.away}
 							</p>
-						)}
-						{match?.fixture?.status?.short === 'PST' && <p>-</p>}
-						{match?.fixture?.status?.short === 'CANC' && <p>-</p>}
-						{match?.fixture?.status?.short === 'ABD' && <p>-</p>}
-						{match?.fixture?.status?.short === 'AWD' && (
-							<p>{match?.goals?.away}</p>
-						)}
-						{match?.fixture?.status?.short === 'LIVE' && (
-							<p>{match?.goals?.away}</p>
 						)}
 					</div>
 				</div>
 				<div className={styles.score}>
 					<div className={styles.scoreHalfTime}>
-						{match?.fixture?.status?.short === 'NS' && null}
-						{match?.fixture?.status?.short === '1H' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'HT' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === '2H' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'ET' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'BT' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'P' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'FT' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'PST' && null}
-						{match?.fixture?.status?.short === 'CANC' && null}
-						{match?.fixture?.status?.short === 'AET' && (
-							<p>({match?.score?.halftime?.home})</p>
-						)}
-						{match?.fixture?.status?.short === 'PEN' && (
-							<p>({match?.score?.halftime?.home})</p>
+						{(fixture?.status?.short === MatchStatuses.FirstHalf ||
+							fixture?.status?.short === MatchStatuses.Halftime ||
+							fixture?.status?.short === MatchStatuses.SecondHalf ||
+							fixture?.status?.short === MatchStatuses.ExtraTime ||
+							fixture?.status?.short === MatchStatuses.PenaltyInProgress ||
+							fixture?.status?.short === MatchStatuses.Finished ||
+							fixture?.status?.short === MatchStatuses.FinishedAfterExtraTime ||
+							fixture?.status?.short ===
+								MatchStatuses.FinishedAfterPenaltyShootout) && (
+							<p>({score?.halftime?.home})</p>
 						)}
 					</div>
 					<div className={styles.scoreHalfTime}>
-						{match?.fixture?.status?.short === 'NS' && null}
-						{match?.fixture?.status?.short === '1H' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'HT' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === '2H' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'ET' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'BT' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'P' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'FT' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'PST' && null}
-						{match?.fixture?.status?.short === 'CANC' && null}
-						{match?.fixture?.status?.short === 'AET' && (
-							<p>({match?.score?.halftime?.away})</p>
-						)}
-						{match?.fixture?.status?.short === 'PEN' && (
-							<p>({match?.score?.halftime?.away})</p>
+						{(fixture?.status?.short === MatchStatuses.FirstHalf ||
+							fixture?.status?.short === MatchStatuses.Halftime ||
+							fixture?.status?.short === MatchStatuses.SecondHalf ||
+							fixture?.status?.short === MatchStatuses.ExtraTime ||
+							fixture?.status?.short === MatchStatuses.PenaltyInProgress ||
+							fixture?.status?.short === MatchStatuses.Finished ||
+							fixture?.status?.short === MatchStatuses.FinishedAfterExtraTime ||
+							fixture?.status?.short ===
+								MatchStatuses.FinishedAfterPenaltyShootout) && (
+							<p>({score?.halftime?.away})</p>
 						)}
 					</div>
 				</div>
