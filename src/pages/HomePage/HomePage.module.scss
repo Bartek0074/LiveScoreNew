@@ -42,8 +42,14 @@
 			background-color: $dirtyWhiteColor;
 			padding: 8px;
 			border-radius: 4px;
+			.leaguePanel {
+				margin-bottom: 2px;
+			}
+			.match{
+				border-bottom: 1px solid $leaguePanelBackground;
+			}
 		}
-		.noMatchesInfo{
+		.noMatchesInfo {
 			display: flex;
 			justify-content: center;
 			align-items: center;

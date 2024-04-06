@@ -114,7 +114,7 @@ export default function HomePage() {
 		};
 
 		const fetchDataPeriodically = () => {
-			fetchDataInterval = setInterval(refetchData, 25000);
+			fetchDataInterval = setInterval(refetchData, 30000);
 		};
 
 		fetchData();
@@ -182,9 +182,11 @@ export default function HomePage() {
 								if (league.league && league.matches.length) {
 									return (
 										<div key={league.leagueId}>
-											<LeaguePanel league={league.league} />
+											<div className={styles.leaguePanel}>
+												<LeaguePanel league={league.league} />
+											</div>
 											{league.matches.map((match) => (
-												<div key={match.fixture.id}>
+												<div className={styles.match} key={match.fixture.id}>
 													<MatchPanel match={match} />
 												</div>
 											))}
