@@ -3,7 +3,7 @@
 .matchPanel {
 	display: flex;
 	align-items: center;
-	padding: 6px 12px;
+	padding: 8px 12px 4px;
 	cursor: pointer;
 	transition: background-color 0.3s;
 	&:hover {
@@ -39,73 +39,55 @@
 			}
 		}
 	}
-	.teams {
-		display: flex;
-		flex-direction: column;
-		.team {
+
+	.content {
+		width: calc(100% - 60px);
+		.home,
+		.away {
 			display: flex;
-			flex-direction: row;
-			align-items: center;
-			&:first-child {
-				margin-bottom: 4px;
-			}
-			.logo {
+			.team {
 				display: flex;
-				justify-content: center;
+				flex-direction: row;
 				align-items: center;
-				height: 20px;
-				width: 32px;
-				margin-right: 2px;
-				img {
-					height: 100%;
+				&:first-child {
+					margin-bottom: 4px;
 				}
-			}
-			.teamName {
-				font-size: 14px;
-				letter-spacing: 0.25px;
-				color: $grayFontColor;
-				&:hover {
-					color: $grayFontColorHover;
-					text-decoration: underline;
+				.logo {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 20px;
+					width: 32px;
+					margin-right: 2px;
+					img {
+						height: 100%;
+					}
 				}
-				&Winner {
-					font-weight: 500;
-					color: $blackFontColor;
+				.teamName {
+					font-size: 14px;
+					letter-spacing: 0.25px;
+					color: $grayFontColor;
 					&:hover {
-						color: $blackFontColorHover;
+						color: $grayFontColorHover;
+						text-decoration: underline;
+					}
+					&Winner {
+						font-weight: 500;
+						color: $blackFontColor;
+						&:hover {
+							color: $blackFontColorHover;
+						}
 					}
 				}
 			}
-		}
-	}
-	.scores {
-		display: flex;
-		flex-direction: row;
-		margin-left: auto;
-		transform: translateY(1px);
-		.score {
-			font-size: 14px;
-			&FullTime {
-				margin-right: 6px;
-			}
-			&ExtraTime {
-				margin-right: 12px;
-			}
-			&FullTime,
-			&HalfTime {
-				display: flex;
-				justify-content: center;
-			}
-			&FullTime,
-			&ExtraTime {
-				font-weight: 500;
-			}
-			&FullTimeNotBold {
-				font-weight: 400;
-				color: $blackFontColor;
-			}
-			&HalfTime {
-				color: $blackFontColor;
+			.score {
+				margin-left: auto;
+				padding: 0 12px;
+				font-weight: 450;
+				font-size: 13px;
+				&Live {
+					color: $redColor;
+				}
 			}
 		}
 	}
