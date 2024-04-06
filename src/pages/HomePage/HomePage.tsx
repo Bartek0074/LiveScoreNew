@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import LoadingBall from '../../components/LoadingBall/LoadingBall';
 import LeaguesSidebar from '../../components/LeaguesSidebar/LeaguesSidebar';
 import LeaguePanel from '../../components/LeaguePanel/LeaguePanel';
+import MatchPanel from '../../components/MatchPanel/MatchPanel';
 import Button from '../../components/Button/Button';
 import { DatePicker, Result } from 'antd';
 
@@ -177,7 +178,9 @@ export default function HomePage() {
 										<div key={league.leagueId}>
 											<LeaguePanel league={league.league} />
 											{league.matches.map((match) => (
-												<div key={match.fixture.id}>{match.fixture.id}</div>
+												<div key={match.fixture.id}>
+													<MatchPanel match={match} />
+												</div>
 											))}
 										</div>
 									);

@@ -1,0 +1,96 @@
+@use '../../styles/variables' as *;
+
+.matchPanel {
+	display: flex;
+	align-items: center;
+	padding: 0.375em 0.5em;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	&:hover {
+		background-color: #acacac;
+	}
+	.time {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 60px;
+		margin-right: 0.75em;
+		p {
+			color: $blackFontColor;
+			font-size: 12px;
+			text-align: center;
+			line-height: 16px;
+		}
+		.date {
+			font-size: 11.5px;
+			font-weight: bold;
+			margin-bottom: 0.1em;
+			color: black;
+		}
+		p.timeLive {
+			font-weight: 600;
+			font-weight: bold;
+			color: red;
+		}
+	}
+	.teams {
+		display: flex;
+		flex-direction: column;
+		.team {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			&:first-child {
+				margin-bottom: 0.25em;
+			}
+			.logo {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 20px;
+				width: 32px;
+				margin-right: 2px;
+				img {
+					height: 100%;
+				}
+			}
+			.teamName {
+				font-size: 14px;
+				&Winner {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	.scores {
+		display: flex;
+		flex-direction: row;
+		margin-left: auto;
+		.score {
+			font-size: 15px;
+			&FullTime {
+				margin-right: 0.375em;
+			}
+			&ExtraTime {
+				margin-right: 0.75em;
+			}
+			&FullTime,
+			&HalfTime {
+				display: flex;
+				justify-content: center;
+			}
+			&FullTime,
+			&ExtraTime {
+				font-weight: bold;
+			}
+			&FullTimeNotBold {
+				font-weight: normal;
+				color: black;
+			}
+			&HalfTime {
+				color: black;
+			}
+		}
+	}
+}
