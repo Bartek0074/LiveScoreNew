@@ -26,7 +26,9 @@ export const useMatchesStore = create<MatchesStore>((set, getState) => ({
 
 		try {
 			const previouseMatches = getState().matches;
-			const matches = await fetchFromAPI(`fixtures?date=${formattedDate}`);
+			const matches = await fetchFromAPI(
+				`fixtures?date=${formattedDate}&timezone=Europe/Warsaw`
+			);
 			set({
 				matches: matches.response,
 				previousFetchMatches: previouseMatches,
