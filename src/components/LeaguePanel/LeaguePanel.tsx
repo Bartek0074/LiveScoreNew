@@ -5,6 +5,7 @@ import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
 
 import { MatchLeague } from '../../data/matches/types';
 
+import ImageComponent from '../ImageComponent/ImageComponent';
 import { Tooltip } from 'antd';
 
 import { RiStarFill } from 'react-icons/ri';
@@ -24,7 +25,11 @@ export default function LeaguePanel({ league }: Props) {
 		<div className={styles.leaguePanel}>
 			<div className={styles.leftSection}>
 				<div className={styles.flag}>
-					<img src={league.flag} alt={`${league.country} flag`} />
+					<ImageComponent
+						src={league.flag}
+						alt={`${league.country} flag`}
+						loaderSize={12}
+					/>
 				</div>
 				<p className={styles.country}>{league.country}:</p>
 				<p
