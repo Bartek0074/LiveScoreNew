@@ -114,7 +114,7 @@ export default function MatchPanel({ match }: Props) {
 	});
 
 	const homeClassess = classNames(styles.home, {
-		[styles.homeScore]: !hasHomeTeamScored,
+		[styles.homeScore]: hasHomeTeamScored,
 	});
 	const awayClassess = classNames(styles.away, {
 		[styles.awayScore]: hasAwayTeamScored,
