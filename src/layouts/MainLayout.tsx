@@ -5,12 +5,14 @@ import { useEffect } from 'react';
 import Cookies from 'universal-cookie';
 import { CookiesEnum } from '../utils/cookies';
 
+import Logo from '../components/Logo/Logo';
+
 import { Outlet, useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../utils/routes';
 
 import { usePinnedLeagueIdsStore } from '../data/pinnedLeagueIds/store';
 
-import { IoFootball, IoLogoGithub } from 'react-icons/io5';
+import { IoLogoGithub } from 'react-icons/io5';
 
 const defaultPinnedLeagues = [39, 140, 78, 135, 61, 106, 107];
 
@@ -39,9 +41,8 @@ export default function MainLayout() {
 	return (
 		<div className={styles.mainLayout}>
 			<header className={styles.header}>
-				<div className={styles.name} onClick={navToHome}>
-					<IoFootball className={styles.icon} />
-					<p>LiveScore</p>
+				<div className={styles.logo} onClick={navToHome}>
+					<Logo />
 				</div>
 			</header>
 			<div className={styles.content}>

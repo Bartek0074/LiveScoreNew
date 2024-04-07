@@ -1,0 +1,119 @@
+@use '../../styles/variables' as *;
+
+.logo {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	.ball {
+		svg {
+			height: 36px;
+			path {
+				fill: $whiteFontColor;
+				transition: fill 0.3s;
+			}
+		}
+	}
+	.text {
+        margin-left: 2px;
+		font-size: 26px;
+		color: $whiteFontColor;
+		letter-spacing: 0.25px;
+		font-weight: 450;
+        text-transform: uppercase;
+		transform: translateY(-2px);
+		transition: color 0.3s;
+	}
+	&:hover {
+		.ball {
+			svg {
+				path {
+					fill: $whiteFontColorHover;
+				}
+			}
+		}
+
+		.text {
+			color: $whiteFontColorHover;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.logo {
+		.ball {
+			transform: scale(0);
+			transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+			svg {
+				height: 44px;
+				path {
+					animation-duration: 1s;
+					animation-name: pulse;
+					animation-iteration-count: infinite;
+					fill: $whiteFontColor;
+				}
+				.path7 {
+					animation-delay: -1s;
+				}
+				.path6 {
+					animation-delay: -0.875s;
+				}
+				.path5 {
+					animation-delay: -0.75s;
+				}
+				.path4 {
+					animation-delay: -0.625s;
+				}
+				.path3 {
+					animation-delay: -0.5s;
+				}
+				.path2 {
+					animation-delay: -0.375s;
+				}
+				.path1 {
+					animation-delay: -0.25s;
+				}
+				.path0 {
+					animation-delay: -0.125s;
+				}
+			}
+		}
+		.text {
+            margin-left: 0;
+			font-size: 32px;
+			transform: translateY(-2px) translateX(-44px);
+			transition: color 0.3s,
+				transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+		}
+		&:hover {
+			.ball {
+				transform: scale(1);
+			}
+
+			.text {
+				color: $whiteFontColorHover;
+				transform: translateY(-2px) translateX(6px);
+			}
+		}
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 0.1;
+	}
+	30% {
+		opacity: 0.8;
+	}
+	100% {
+		opacity: 0.1;
+	}
+}
