@@ -6,10 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { usePinnedLeagueIdsStore } from '../../../data/pinnedLeagueIds/store';
 
+import { Tooltip } from 'antd';
+
 import { CountryLeague } from '../../../data/leagues/types';
 import { AppRoutes } from '../../../utils/routes';
 
 import { RiStarFill } from 'react-icons/ri';
+
+import { colors } from '../../../utils/colors';
 
 interface Props {
 	league: CountryLeague;
@@ -38,15 +42,24 @@ export default function League({ league }: Props) {
 
 	return (
 		<div className={leagueClasses}>
-			<p className={styles.text} onClick={navToLeague}>
-				{league?.league?.name}
-			</p>
-			<div
-				className={styles.iconWrapper}
-				onClick={() => togglePinnedLeagueId(league.league.id)}
+			<Tooltip title={league.league.name} color={colors.tooltipBackground}>
+				<p className={styles.text} onClick={navToLeague}>
+					{league?.league?.name}
+				</p>
+			</Tooltip>
+			<Tooltip
+				title={
+					isPinned ? 'Remove from pinned leagues' : 'Add to pinned leagues'
+				}
+				color={colors.tooltipBackground}
 			>
-				<RiStarFill className={styles.icon} />
-			</div>
+				<div
+					className={styles.iconWrapper}
+					onClick={() => togglePinnedLeagueId(league.league.id)}
+				>
+					<RiStarFill className={styles.icon} />
+				</div>
+			</Tooltip>
 		</div>
 	);
 }

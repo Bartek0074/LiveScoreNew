@@ -1,12 +1,15 @@
 import styles from './LeaguePanel.module.scss';
-import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
 import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
 
 import { MatchLeague } from '../../data/matches/types';
 
+import { Tooltip } from 'antd';
+
 import { RiStarFill } from 'react-icons/ri';
+
+import { colors } from '../../utils/colors';
 
 interface Props {
 	league: MatchLeague;
@@ -16,7 +19,7 @@ export default function LeaguePanel({ league }: Props) {
 	const navigate = useNavigate();
 
 	const { togglePinnedLeagueId } = usePinnedLeagueIdsStore();
-	// console.log(league);
+
 	return (
 		<div className={styles.leaguePanel}>
 			<div className={styles.leftSection}>
@@ -34,12 +37,17 @@ export default function LeaguePanel({ league }: Props) {
 				</p>
 			</div>
 			<div className={styles.rightSection}>
-				<div
-					className={styles.iconWrapper}
-					onClick={(e) => togglePinnedLeagueId(league.id)}
+				<Tooltip
+					title={'Remove from pinned leagues'}
+					color={colors.tooltipBackground}
 				>
-					<RiStarFill className={styles.icon} />
-				</div>
+					<div
+						className={styles.iconWrapper}
+						onClick={() => togglePinnedLeagueId(league.id)}
+					>
+						<RiStarFill className={styles.icon} />
+					</div>
+				</Tooltip>
 			</div>
 		</div>
 	);
