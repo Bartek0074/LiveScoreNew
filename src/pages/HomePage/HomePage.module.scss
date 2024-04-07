@@ -2,15 +2,19 @@
 
 .homePage {
 	height: 100%;
+	max-width: 1000px;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: auto 1fr;
+	padding: 8px;
 	.sidebar {
 		overflow-y: scroll;
+		background-color: $dirtyWhiteColor;
+		border-radius: 4px;
 	}
 	.content {
 		display: grid;
 		grid-template-rows: auto 1fr;
-		padding: 8px;
 		overflow-y: scroll;
 		.topBar {
 			display: flex;
@@ -21,13 +25,13 @@
 				width: 100%;
 				display: flex;
 				align-items: center;
-				justify-content: space-evenly;
-				gap: 4px;
+				justify-content: space-between;
+				gap: 2px;
 				margin-bottom: 8px;
 				flex-wrap: wrap;
 			}
 			.datePicker {
-				width: 90%;
+				width: 100%;
 			}
 		}
 		.loading {
@@ -45,7 +49,7 @@
 			.leaguePanel {
 				margin-bottom: 2px;
 			}
-			.match{
+			.match {
 				border-bottom: 1px solid $leaguePanelBackground;
 			}
 		}
@@ -58,16 +62,39 @@
 	}
 }
 
-@media (min-width: 578px) {
+@media (min-width: 576px) {
 	.homePage {
+		padding: 12px;
 		.content {
-			padding: 12px;
+			margin-left: 8px;
 			.topBar {
-				flex-direction: row;
-				gap: 12px;
+				position: sticky;
+				z-index: 1;
+				top: 0px;
+				margin-bottom: 0;
+				padding-bottom: 8px;
+				gap: 8px;
+				background-color: $backgroundColor;
 				.buttons {
 					margin-bottom: 0;
-					height: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.homePage {
+		.content {
+			margin-left: 16px;
+			.topBar {
+				position: sticky;
+				z-index: 1;
+				top: 0px;
+				flex-direction: row;
+				padding-bottom: 12px;
+				gap: 12px;
+				.buttons {
 					gap: 12px;
 					justify-content: flex-start;
 				}
