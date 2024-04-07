@@ -31,54 +31,54 @@ export default function MatchPanel({ match }: Props) {
 	const getStatusMessage = () => {
 		switch (fixture?.status?.short) {
 			case MatchStatuses.TimeToBeDefined:
-				return <p>TBD</p>;
+				return <p className={styles.time}>TBD</p>;
 			case MatchStatuses.NotStarted:
-				return <p>{getMatchTime(fixture?.date)}</p>;
+				return <p className={styles.time}>{getMatchTime(fixture?.date)}</p>;
 			case MatchStatuses.FirstHalf:
 				return (
-					<p className={styles.timeLive}>
-						{fixture?.status?.elapsed}
+					<p className={styles.time}>
+						<span className={styles.number}>{fixture?.status?.elapsed}</span>
 						<span className={styles.apostrophe}>'</span>
 					</p>
 				);
 			case MatchStatuses.Halftime:
-				return <p className={styles.timeLive}>Half Time</p>;
+				return <p className={styles.time}>Half Time</p>;
 			case MatchStatuses.SecondHalf:
 				return (
-					<p className={styles.timeLive}>
-						{fixture?.status?.elapsed}{' '}
+					<p className={styles.time}>
+						<span className={styles.number}>{fixture?.status?.elapsed}</span>
 						<span className={styles.apostrophe}>'</span>
 					</p>
 				);
 			case MatchStatuses.ExtraTime:
 				return (
-					<p className={styles.timeLive}>
+					<p className={styles.time}>
 						ET
 						<br />
-						{fixture?.status?.elapsed}{' '}
+						<span className={styles.number}>{fixture?.status?.elapsed}</span>
 						<span className={styles.apostrophe}>'</span>
 					</p>
 				);
 			case MatchStatuses.BreakTime:
-				return <p className={styles.timeLive}>Break Time</p>;
+				return <p className={styles.time}>Break Time</p>;
 			case MatchStatuses.PenaltyInProgress:
-				return <p className={styles.timeLive}>Pen.</p>;
+				return <p className={styles.time}>Pen.</p>;
 			case MatchStatuses.Suspended:
-				return <p>Suspended</p>;
+				return <p className={styles.time}>Suspended</p>;
 			case MatchStatuses.Finished:
-				return <p>Finished</p>;
+				return <p className={styles.time}>Finished</p>;
 			case MatchStatuses.FinishedAfterExtraTime:
-				return <p>AET</p>;
+				return <p className={styles.time}>AET</p>;
 			case MatchStatuses.FinishedAfterPenaltyShootout:
-				return <p>Pen.</p>;
+				return <p className={styles.time}>Pen.</p>;
 			case MatchStatuses.Postponed:
-				return <p>Postponed</p>;
+				return <p className={styles.time}>Postponed</p>;
 			case MatchStatuses.Cancelled:
-				return <p>Cancelled</p>;
+				return <p className={styles.time}>Cancelled</p>;
 			case MatchStatuses.Abandoned:
-				return <p>Abandoned</p>;
+				return <p className={styles.time}>Abandoned</p>;
 			case MatchStatuses.TechnicalLoss:
-				return <p>Technical Loss</p>;
+				return <p className={styles.time}>Technical Loss</p>;
 			default:
 				return null;
 		}
@@ -110,10 +110,11 @@ export default function MatchPanel({ match }: Props) {
 
 	const matchPanelClassess = classNames(styles.matchPanel, {
 		[styles.matchPanelChange]: hasHomeTeamScored || hasAwayTeamScored,
+		[styles.matchPanelLive]: isMatchLive,
 	});
 
 	const homeClassess = classNames(styles.home, {
-		[styles.homeScore]: hasHomeTeamScored,
+		[styles.homeScore]: !hasHomeTeamScored,
 	});
 	const awayClassess = classNames(styles.away, {
 		[styles.awayScore]: hasAwayTeamScored,
