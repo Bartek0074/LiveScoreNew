@@ -42,6 +42,9 @@
 
 	.content {
 		width: calc(100% - 60px);
+		.home {
+			margin-bottom: 1px;
+		}
 		.home,
 		.away {
 			display: flex;
