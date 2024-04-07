@@ -49,13 +49,23 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			cursor: pointer;
 			.icon {
-				font-size: 17px;
-				color: $goldStarColor;
-				cursor: pointer;
-				transition: color 0.3s;
+				color: $grayFontColor;
 				&:hover {
-					color: $grayFontColor;
+					color: $goldStarColor;
+				}
+			}
+		}
+	}
+	&Pinned {
+		.rightSection {
+			.iconWrapper {
+				.icon {
+					color: $goldStarColor;
+					&:hover {
+						color: $goldStarColor;
+					}
 				}
 			}
 		}

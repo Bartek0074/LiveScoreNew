@@ -1,0 +1,28 @@
+@use '../../styles/variables' as *;
+
+.matchPage {
+	height: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	.loading {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $dirtyWhiteColor;
+		border-radius: 4px;
+	}
+	.content,
+	.loading {
+		overflow-y: scroll;
+		background-color: $dirtyWhiteColor;
+		padding: 8px;
+		border-radius: 4px;
+		height: 100%;
+	}
+}
+
+@media (min-width: 576px) {
+	.matchPage {
+		padding: 12px;
+	}
+}

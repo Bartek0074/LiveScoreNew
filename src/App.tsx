@@ -6,6 +6,7 @@ import { AppRoutes } from './utils/routes';
 
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage/HomePage';
+import MatchPage from './pages/MatchPage/MatchPage';
 
 function App() {
 	const router = createBrowserRouter([
@@ -14,8 +15,8 @@ function App() {
 			errorElement: <p>Not Found</p>,
 			children: [
 				{ path: AppRoutes.home, element: <HomePage /> },
+				{ path: AppRoutes.match, element: <MatchPage /> },
 				{ path: AppRoutes.league, element: <p>League</p> },
-				{ path: AppRoutes.match, element: <p>Match</p> },
 				{ path: AppRoutes.player, element: <p>Player</p> },
 				{ path: AppRoutes.team, element: <p>Team</p> },
 			],

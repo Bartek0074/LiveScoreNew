@@ -1,4 +1,5 @@
 import styles from './LeaguePanel.module.scss';
+import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
 import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
@@ -19,10 +20,16 @@ interface Props {
 export default function LeaguePanel({ league }: Props) {
 	const navigate = useNavigate();
 
-	const { togglePinnedLeagueId } = usePinnedLeagueIdsStore();
+	const { togglePinnedLeagueId, pinnedLeagueIds } = usePinnedLeagueIdsStore();
+
+	const isPinned = pinnedLeagueIds.includes(league.id);
+
+	const leagueClasses = classNames(styles.leaguePanel, {
+		[styles.leaguePanelPinned]: isPinned,
+	});
 
 	return (
-		<div className={styles.leaguePanel}>
+		<div className={leagueClasses}>
 			<div className={styles.leftSection}>
 				<div className={styles.flag}>
 					<ImageComponent
@@ -43,7 +50,9 @@ export default function LeaguePanel({ league }: Props) {
 			</div>
 			<div className={styles.rightSection}>
 				<Tooltip
-					title={'Remove from pinned leagues'}
+					title={
+						isPinned ? 'Remove from pinned leagues' : 'Add to pinned leagues'
+					}
 					color={colors.tooltipBackground}
 				>
 					<div
