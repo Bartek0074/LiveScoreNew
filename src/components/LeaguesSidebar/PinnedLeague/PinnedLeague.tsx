@@ -8,6 +8,7 @@ import { CountryLeague } from '../../../data/leagues/types';
 import { AppRoutes } from '../../../utils/routes';
 
 import { RiStarFill } from 'react-icons/ri';
+import ImageComponent from '../../ImageComponent/ImageComponent';
 
 interface Props {
 	league: CountryLeague;
@@ -25,7 +26,13 @@ export default function PinnedLeague({ league }: Props) {
 	return (
 		<div className={styles.pinnedLeague} onClick={navToLeague}>
 			<div className={styles.leftSection}>
-				<img src={league.country.flag} alt={`Flag of ${league.country.name}`} />
+				<div className={styles.flag}>
+					<ImageComponent
+						src={league.country.flag}
+						alt={`Flag of ${league.country.name}`}
+						loaderSize={12}
+					/>
+				</div>
 				<p className={styles.text}>{league?.league?.name}</p>
 			</div>
 			<div
