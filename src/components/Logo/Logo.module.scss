@@ -14,13 +14,15 @@
 		}
 	}
 	.text {
-        margin-left: 2px;
-		font-size: 26px;
+		margin-left: 2px;
+		font-size: 32px;
+		line-height: 32px;
 		color: $whiteFontColor;
-		letter-spacing: 0.25px;
+		letter-spacing: 1px;
 		font-weight: 450;
-        text-transform: uppercase;
-		transform: translateY(-2px);
+		font-family: 'Teko', sans-serif;
+		text-transform: uppercase;
+		transform: translateY(1px);
 		transition: color 0.3s;
 	}
 	&:hover {
@@ -78,9 +80,10 @@
 			}
 		}
 		.text {
-            margin-left: 0;
-			font-size: 32px;
-			transform: translateY(-2px) translateX(-44px);
+			margin-left: 0;
+			font-size: 36px;
+			line-height: 36px;
+			transform: translateX(-44px);
 			transition: color 0.3s,
 				transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 		}
@@ -91,7 +94,7 @@
 
 			.text {
 				color: $whiteFontColorHover;
-				transform: translateY(-2px) translateX(6px);
+				transform: translateX(6px);
 			}
 		}
 	}

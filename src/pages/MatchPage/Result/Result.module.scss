@@ -60,7 +60,7 @@
 		flex-direction: column;
 		align-items: center;
 		.date {
-			margin-bottom: 4px;
+			margin-bottom: 2px;
 			font-size: 12px;
 			color: $grayFontColor;
 			&ThroughLined {
@@ -68,10 +68,13 @@
 			}
 		}
 		.score {
+			margin-bottom: -2px;
 			&Number {
-				font-size: 36px;
-				font-weight: 500;
+				font-size: 42px;
+				line-height: 42px;
+				font-weight: 400;
 				color: $blackFontColor;
+				font-family: 'Teko', sans-serif;
 			}
 		}
 		.status {
@@ -103,6 +106,7 @@
 			.score {
 				&Number {
 					color: $redColor;
+					font-family: 'Teko', sans-serif;
 				}
 			}
 		}
@@ -129,13 +133,13 @@
 		}
 		.middleSection {
 			.date {
-				margin-bottom: 8px;
+				margin-bottom: 12px;
 				font-size: 13px;
 			}
 			.score {
-				margin-bottom: 2px;
 				&Number {
-					font-size: 48px;
+					font-size: 60px;
+					line-height: 60px;
 				}
 			}
 			.status {
