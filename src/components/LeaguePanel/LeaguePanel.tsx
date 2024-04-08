@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
 
-import { MatchLeague } from '../../data/matches/types';
+import { MatchLeague } from '../../data/currentMatch/types';
 
 import ImageComponent from '../ImageComponent/ImageComponent';
 import { Tooltip } from 'antd';

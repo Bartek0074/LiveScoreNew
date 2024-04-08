@@ -65,6 +65,8 @@ export default function MatchPanel({ match }: Props) {
 				return <p className={styles.time}>Pen.</p>;
 			case MatchStatuses.Suspended:
 				return <p className={styles.time}>Suspended</p>;
+			case MatchStatuses.Interrupted:
+				return <p className={styles.time}>Interrupted</p>;
 			case MatchStatuses.Finished:
 				return <p className={styles.time}>Finished</p>;
 			case MatchStatuses.FinishedAfterExtraTime:
@@ -79,6 +81,10 @@ export default function MatchPanel({ match }: Props) {
 				return <p className={styles.time}>Abandoned</p>;
 			case MatchStatuses.TechnicalLoss:
 				return <p className={styles.time}>Technical Loss</p>;
+			case MatchStatuses.Walkover:
+				return <p className={styles.time}>Walkover</p>;
+			case MatchStatuses.Live:
+				return <p className={styles.time}>Awaiting Updates</p>;
 			default:
 				return null;
 		}
@@ -102,7 +108,10 @@ export default function MatchPanel({ match }: Props) {
 		statusShort === MatchStatuses.SecondHalf ||
 		statusShort === MatchStatuses.ExtraTime ||
 		statusShort === MatchStatuses.BreakTime ||
-		statusShort === MatchStatuses.PenaltyInProgress;
+		statusShort === MatchStatuses.PenaltyInProgress ||
+		statusShort === MatchStatuses.Live ||
+		statusShort === MatchStatuses.Interrupted ||
+		statusShort === MatchStatuses.Suspended;
 
 	const scoreClassess = classNames(styles.score, {
 		[styles.scoreLive]: isMatchLive,

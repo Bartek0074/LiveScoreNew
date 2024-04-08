@@ -1,7 +1,7 @@
-import { League, CountryProps } from './types';
+import { PinnedLeague, CountryProps } from './types';
 
-export const returnCountries = (leagues: League[]) => {
-	const countries = leagues.reduce((acc: CountryProps[], league: League) => {
+export const returnCountries = (leagues: PinnedLeague[]) => {
+	const countries = leagues.reduce((acc: CountryProps[], league: PinnedLeague) => {
 		const { country } = league;
 		const countryIndex = acc.findIndex((c) => c.country === country.name);
 

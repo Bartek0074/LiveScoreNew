@@ -1,4 +1,5 @@
-import { MatchStatuses } from "../../utils/matchStatuses";
+import { MatchStatuses } from '../../utils/matchStatuses';
+import { MatchLeague } from '../currentMatch/types';
 
 export interface Match {
 	fixture: Fixture;
@@ -34,16 +35,6 @@ interface Fixture {
 		short: MatchStatuses;
 		elapsed: number;
 	};
-}
-
-export interface MatchLeague {
-	id: number;
-	name: string;
-	country: string;
-	logo: string;
-	flag: string;
-	season: number;
-	round: string;
 }
 
 interface Teams {

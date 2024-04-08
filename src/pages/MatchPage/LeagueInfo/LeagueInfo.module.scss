@@ -1,0 +1,73 @@
+@use '../../../styles/variables' as *;
+
+.leagueInfo {
+	display: flex;
+	align-items: center;
+	.flag {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 16px;
+		width: 24px;
+		margin-right: 4px;
+		transform: translateY(-1px);
+		img {
+			height: 100%;
+		}
+	}
+	.country {
+		margin-right: 6px;
+		font-size: 15px;
+		color: $grayFontColor;
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+	.league {
+		display: flex;
+		cursor: pointer;
+		.logo {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 15px;
+			margin-right: 3px;
+			img {
+				height: 100%;
+			}
+		}
+		.name {
+			font-size: 14px;
+			color: $grayFontColor;
+			font-weight: 450;
+			text-transform: uppercase;
+		}
+		&:hover {
+			.name {
+				color: $grayFontColorHover;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+@media (min-width: 576px) {
+	.leagueInfo {
+		.flag {
+			height: 18px;
+			width: 28px;
+			transform: translateY(-2px);
+		}
+		.country {
+			margin-right: 8px;
+			font-size: 16px;
+		}
+		.league {
+			.logo {
+				height: 16px;
+				margin-right: 4px;
+			}
+			.name {
+				font-size: 15px;
+			}
+		}
+	}
+}

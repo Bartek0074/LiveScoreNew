@@ -1,0 +1,161 @@
+@use '../../../styles/variables' as *;
+
+.result {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	.home,
+	.away {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.team {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.logo {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 6px;
+				height: 64px;
+				width: 64px;
+				border: 1px solid $grayBorderColor;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				&:hover {
+					background-color: $shadowHoverColor;
+				}
+				img {
+					height: 100%;
+				}
+			}
+			&Name {
+				margin-top: 6px;
+				p {
+					font-size: 14px;
+					letter-spacing: 0.25px;
+					color: $grayFontColor;
+					cursor: pointer;
+					&:hover {
+						color: $grayFontColorHover;
+						text-decoration: underline;
+					}
+				}
+				&Winner {
+					p {
+						color: $blackFontColor;
+						font-weight: 500;
+						&:hover {
+							color: $blackFontColor;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.middleSection {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.date {
+			margin-bottom: 4px;
+			font-size: 12px;
+			color: $grayFontColor;
+			&ThroughLined {
+				text-decoration: line-through;
+			}
+		}
+		.score {
+			&Number {
+				font-size: 36px;
+				font-weight: 500;
+				color: $blackFontColor;
+			}
+		}
+		.status {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			&Info,
+			&Time {
+				font-size: 12px;
+				color: $grayFontColor;
+				text-transform: uppercase;
+				letter-spacing: 0.25px;
+				font-weight: 450;
+				.apostrophe {
+					animation: pulse 1.5s infinite;
+				}
+			}
+		}
+	}
+	&Live {
+		.middleSection {
+			.status {
+				&Info,
+				&Time {
+					color: $redColor;
+				}
+			}
+			.score {
+				&Number {
+					color: $redColor;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.result {
+		.home,
+		.away {
+			.team {
+				.logo {
+					padding: 10px;
+					height: 100px;
+					width: 100px;
+					border-radius: 10px;
+				}
+				&Name {
+					p {
+						font-size: 16px;
+					}
+				}
+			}
+		}
+		.middleSection {
+			.date {
+				margin-bottom: 8px;
+				font-size: 13px;
+			}
+			.score {
+				margin-bottom: 2px;
+				&Number {
+					font-size: 48px;
+				}
+			}
+			.status {
+				&Info,
+				&Time {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

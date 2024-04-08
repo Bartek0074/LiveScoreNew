@@ -7,7 +7,7 @@ export interface CurrentMatch {
 		away: number;
 		home: number;
 	};
-	league: League;
+	league: MatchLeague;
 	lineups: [Lineup, Lineup];
 	players: [
 		{ players: Player[]; team: PlayerTeam },
@@ -69,14 +69,14 @@ interface Fixture {
 	};
 }
 
-interface League {
+export interface MatchLeague {
 	id: number;
-	country: string;
-	flag: string;
-	logo: string;
 	name: string;
-	round: string;
+	country: string;
+	logo: string;
+	flag: string;
 	season: number;
+	round: string;
 }
 
 interface Lineup {

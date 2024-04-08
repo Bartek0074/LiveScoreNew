@@ -1,4 +1,4 @@
-export interface League {
+export interface PinnedLeague {
 	country: Country;
 	league: LeagueProps;
 	season: Season;
@@ -8,7 +8,7 @@ export interface CountryProps {
 	country: string;
 	code: string;
 	flag: string;
-	leagues: League[];
+	leagues: PinnedLeague[];
 }
 
 interface Country {

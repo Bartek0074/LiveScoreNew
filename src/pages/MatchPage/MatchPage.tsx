@@ -1,16 +1,15 @@
 import styles from './MatchPage.module.scss';
 
 import { useState, useEffect } from 'react';
-
 import { useParams } from 'react-router-dom';
 
 import LoadingBall from '../../components/LoadingBall/LoadingBall';
 
 import { useCurrentMatchStore } from '../../data/currentMatch/store';
-import { usePinnedLeagueIdsStore } from '../../data/pinnedLeagueIds/store';
 
 import { MatchPageFilters } from '../../utils/matchPageFilters';
-import LeaguePanel from '../../components/LeaguePanel/LeaguePanel';
+import LeagueInfo from './LeagueInfo/LeagueInfo';
+import Result from './Result/Result';
 
 const buttons = [
 	{ text: 'Summary', filter: MatchPageFilters.Summary },
@@ -23,7 +22,6 @@ export default function MatchPage() {
 	const { id } = useParams();
 
 	const { currentMatch, getRemoteCurrentMatch } = useCurrentMatchStore();
-	const { pinnedLeagueIds } = usePinnedLeagueIdsStore();
 
 	const [filter, setFilter] = useState<MatchPageFilters>(
 		MatchPageFilters.Summary
@@ -60,7 +58,7 @@ export default function MatchPage() {
 		};
 	}, [id]);
 
-	const league = currentMatch.league;
+	const { league } = currentMatch;
 
 	if (loading) {
 		return (
@@ -75,7 +73,12 @@ export default function MatchPage() {
 	return (
 		<div className={styles.matchPage}>
 			<div className={styles.content}>
-				<LeaguePanel league={league} />
+				<div className={styles.leagueInfo}>
+					<LeagueInfo league={league} />
+				</div>
+				<div className={styles.result}>
+					<Result match={currentMatch} />
+				</div>
 			</div>
 		</div>
 	);
