@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import LoadingBall from '../../components/LoadingBall/LoadingBall';
+import Button from '../../components/Button/Button';
 
 import { useCurrentMatchStore } from '../../data/currentMatch/store';
 
 import { MatchPageFilters } from '../../utils/matchPageFilters';
 import LeagueInfo from './LeagueInfo/LeagueInfo';
 import Result from './Result/Result';
+import MatchInfo from './MatchInfo/MatchInfo';
 
 const buttons = [
 	{ text: 'Summary', filter: MatchPageFilters.Summary },
@@ -79,6 +81,43 @@ export default function MatchPage() {
 				<div className={styles.result}>
 					<Result match={currentMatch} />
 				</div>
+				<div className={styles.buttons}>
+					{buttons.map((button, index) => (
+						<Button
+							key={index}
+							text={button.text}
+							active={filter === button.filter}
+							onClick={() => setFilter(button.filter)}
+						/>
+					))}
+				</div>
+				<div className={styles.filteredContent}>
+					{filter === MatchPageFilters.Summary && (
+						<div className={styles.summary}>
+							<p>Summary</p>
+						</div>
+					)}
+					{filter === MatchPageFilters.Stats && (
+						<div className={styles.stats}>
+							<p>Stats</p>
+						</div>
+					)}
+					{filter === MatchPageFilters.Lineups && (
+						<div className={styles.lineups}>
+							<p>Lineups</p>
+						</div>
+					)}
+					{filter === MatchPageFilters.Standings && (
+						<div className={styles.standings}>
+							<p>Standings</p>
+						</div>
+					)}
+				</div>
+				{currentMatch.fixture.venue.name || currentMatch.fixture.referee ? (
+					<div className={styles.matchInfo}>
+						<MatchInfo match={currentMatch} />
+					</div>
+				) : null}
 			</div>
 		</div>
 	);
