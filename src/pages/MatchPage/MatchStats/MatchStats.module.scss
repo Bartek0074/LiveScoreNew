@@ -1,0 +1,24 @@
+@use '../../../styles/variables' as *;
+
+.matchStats {
+	display: flex;
+	flex-direction: column;
+	padding: 0px 2px;
+	width: 100%;
+	gap: 10px;
+	.notAvailable {
+		text-align: center;
+		font-size: 14px;
+		color: $grayFontColor;
+	}
+}
+
+@media (min-width: 576px) {
+	.matchStats {
+		padding: 0 4px;
+		gap: 16px;
+		.notAvailable {
+			font-size: 16px;
+		}
+	}
+}

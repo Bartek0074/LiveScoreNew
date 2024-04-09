@@ -13,6 +13,7 @@ import LeagueInfo from './LeagueInfo/LeagueInfo';
 import Result from './Result/Result';
 import MatchInfo from './MatchInfo/MatchInfo';
 import MatchSummary from './MatchSummary/MatchSummary';
+import MatchStats from './MatchStats/MatchStats';
 
 const buttons = [
 	{ text: 'Summary', filter: MatchPageFilters.Summary },
@@ -97,9 +98,7 @@ export default function MatchPage() {
 						<MatchSummary match={currentMatch} />
 					)}
 					{filter === MatchPageFilters.Stats && (
-						<div className={styles.stats}>
-							<p>Stats</p>
-						</div>
+						<MatchStats match={currentMatch} />
 					)}
 					{filter === MatchPageFilters.Lineups && (
 						<div className={styles.lineups}>

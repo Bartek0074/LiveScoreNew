@@ -15,8 +15,8 @@ export interface CurrentMatch {
 	];
 	score: Score;
 	statistics: [
-		{ statistics: Statistic[]; team: StatisticsTeam },
-		{ statistics: Statistic[]; team: StatisticsTeam }
+		{ statistics: MatchStatistic[]; team: StatisticsTeam },
+		{ statistics: MatchStatistic[]; team: StatisticsTeam }
 	];
 	teams: {
 		home: Team;
@@ -223,9 +223,29 @@ interface Score {
 	};
 }
 
-interface Statistic {
-	type: string;
-	value: string | number;
+export interface MatchStatistic {
+	type: StatisticType;
+	value: string | number | null;
+}
+
+export enum StatisticType {
+	ExpectedGoals = 'expected_goals',
+	BallPossession = 'Ball Possession',
+	TotalShots = 'Total Shots',
+	ShotsOnGoal = 'Shots on Goal',
+	ShotsOffGoal = 'Shots off Goal',
+	BlockedShots = 'Blocked Shots',
+	ShotsInsideBox = 'Shots insidebox',
+	ShotsOutsideBox = 'Shots outsidebox',
+	CornerKicks = 'Corner Kicks',
+	Offsides = 'Offsides',
+	GoalkeeperSaves = 'Goalkeeper Saves',
+	Fouls = 'Fouls',
+	RedCards = 'Red Cards',
+	YellowCards = 'Yellow Cards',
+	TotalPasses = 'Total passes',
+	PassesAccurate = 'Passes accurate',
+	PassesPercentage = 'Passes %',
 }
 
 interface StatisticsTeam {

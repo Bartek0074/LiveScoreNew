@@ -1,0 +1,65 @@
+@use '../../../../styles/variables' as *;
+
+.matchStat {
+	width: 100%;
+	.header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 2px;
+		.value,
+		.type {
+			font-size: 13px;
+			font-weight: 500;
+			columns: $blackFontColor;
+		}
+	}
+	.bar {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2px;
+		&Home,
+		&Away {
+			height: 8px;
+			background-color: $secondaryColorAlpha;
+			border-radius: 1px;
+			.fill {
+				height: 100%;
+				background-color: $darkColor;
+				border-radius: 1px;
+				&Bigger {
+					background-color: $secondaryColor;
+				}
+			}
+		}
+		&Home {
+			display: flex;
+			justify-content: flex-end;
+			border-radius: 3px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.matchStat {
+		.header {
+			margin-bottom: 3px;
+			.value,
+			.type {
+				font-size: 13.5px;
+			}
+		}
+		.bar {
+			gap: 4px;
+			&Home,
+			&Away {
+				height: 10px;
+				border-radius: 2px;
+				.fill {
+					border-radius: 2px;
+				}
+			}
+		}
+	}
+}
