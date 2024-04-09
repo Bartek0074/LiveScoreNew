@@ -1,0 +1,133 @@
+@use '../../../../styles/variables' as *;
+
+.event {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	.timeWrapper {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		height: 100%;
+		min-width: 18px;
+		margin-right: 4px;
+		.time {
+			color: $grayFontColor;
+			font-size: 13px;
+			font-weight: 500;
+			letter-spacing: 0.25px;
+		}
+	}
+	.icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 21px;
+		min-width: 21px;
+		padding: 3px;
+		margin-right: 6px;
+		border: 1px solid $grayBorderColor;
+		border-radius: 6px;
+		img {
+			height: 100%;
+		}
+	}
+	.player {
+		margin-right: 3px;
+		color: $blackFontColor;
+		font-size: 13px;
+		font-weight: 500;
+		letter-spacing: 0.25px;
+		cursor: pointer;
+		&:hover {
+			color: $blackFontColorHover;
+			text-decoration: underline;
+		}
+	}
+	.assist {
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+			color: $grayFontColorHover;
+		}
+	}
+	.assist,
+	.comments,
+	.detail {
+		margin-right: 3px;
+		color: $grayFontColor;
+		font-size: 12px;
+		font-weight: 400;
+		letter-spacing: 0.25px;
+	}
+	&Away {
+		flex-direction: row-reverse;
+		.timeWrapper {
+			margin-right: 0;
+			margin-left: 4px;
+			justify-content: flex-end;
+		}
+		.icon {
+			margin-right: 0;
+			margin-left: 6px;
+		}
+		.player {
+			margin-right: 0;
+			margin-left: 3px;
+		}
+		.assist,
+		.comments,
+		.detail {
+			margin-right: 0;
+			margin-left: 3px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.event {
+		.timeWrapper {
+			min-width: 20px;
+			margin-right: 8px;
+			.time {
+				font-size: 14px;
+			}
+		}
+		.icon {
+			margin-right: 8px;
+			padding: 4px;
+			height: 26px;
+			min-width: 26px;
+		}
+		.player {
+			margin-right: 4px;
+			font-size: 14px;
+		}
+		.assist,
+		.comments,
+		.detail {
+			margin-right: 4px;
+			font-size: 13px;
+		}
+		&Away {
+			.timeWrapper {
+				margin-right: 0;
+				margin-left: 8px;
+			}
+			.icon {
+				margin-right: 0;
+				margin-left: 8px;
+			}
+			.player {
+				margin-right: 0;
+				margin-left: 4px;
+			}
+			.assist,
+			.comments,
+			.detail {
+				margin-right: 0;
+				margin-left: 4px;
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" id="icon-offside-flag" y="70">
+    <path fill-rule="evenodd" fill="#FFE659" d="M4.902 7.437l3.464-2 4 6.929-3.464 2-4-6.929z" />
+    <path fill-rule="evenodd" fill="#FFDC19" d="M1.438 9.438l3.464-2.001 4 6.929-3.464 2-4-6.928z" />
+    <path fill-rule="evenodd" fill="#FFDC19" d="M.438 7.705L10.83 1.706l5 8.66-10.392 6-5-8.661z" />
+    <path fill-rule="evenodd" fill="#FF9307"
+        d="M2.938 12.036l5.196-3.001 2.5 4.331-5.196 3-2.5-4.33zM5.634 4.705l5.196-2.999 2.5 4.33-5.196 2.999-2.5-4.33z" />
+    <path fill-rule="evenodd" fill="#E4E7ED" d="M10.83 1.705l1.732-1 9 15.589-1.732 1-9-15.589z" />
+</svg>

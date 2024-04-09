@@ -1,7 +1,7 @@
 import { MatchStatuses } from '../../utils/matchStatuses';
 
 export interface CurrentMatch {
-	events: Event[];
+	events: MatchEvent[];
 	fixture: Fixture;
 	goals: {
 		away: number;
@@ -24,13 +24,13 @@ export interface CurrentMatch {
 	};
 }
 
-interface Event {
+export interface MatchEvent {
 	assist: {
 		id: number;
 		name: string;
 	};
 	comments: string;
-	detail: string;
+	detail: EventDetail;
 	player: {
 		id: number;
 		name: string;
@@ -44,7 +44,27 @@ interface Event {
 		elapsed: number;
 		extra: any;
 	};
-	type: string;
+	type: EventType;
+}
+
+export enum EventType {
+	Goal = 'Goal',
+	Card = 'Card',
+	Substitution = 'subst',
+	Var = 'Var',
+}
+
+export enum EventDetail {
+	NormalGoal = 'Normal Goal',
+	OwnGoal = 'Own Goal',
+	Penalty = 'Penalty',
+	MissedPenalty = 'Missed Penalty',
+	PenaltyCancelled = 'Penalty cancelled',
+	PenaltyConfirmed = 'Penalty confirmed',
+	YellowCard = 'Yellow Card',
+	RedCard = 'Red Card',
+	Offside = 'Goal Disallowed - offside',
+	GoalCancelled = 'Goal cancelled',
 }
 
 interface Fixture {

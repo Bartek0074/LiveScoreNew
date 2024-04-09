@@ -1,0 +1,63 @@
+@use '../../../styles/variables' as *;
+
+.matchSummary {
+	width: 100%;
+	.notAvailable {
+		text-align: center;
+		font-size: 14px;
+		color: $grayFontColor;
+	}
+	.half {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 12px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		.halfInfo {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin-bottom: 8px;
+			align-items: center;
+			width: 100%;
+			background-color: $secondaryColorAlpha;
+			border-radius: 4px;
+			padding: 3px 6px;
+			.halfType,
+			.halfScore {
+				font-size: 12px;
+				text-transform: uppercase;
+				color: $grayFontColor;
+				font-weight: 450;
+			}
+		}
+		.events{
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.matchSummary {
+		.notAvailable {
+			font-size: 16px;
+		}
+		.half {
+			margin-bottom: 24px;
+			.halfInfo {
+				margin-bottom: 12px;
+				padding: 4px 8px;
+				.halfType,
+				.halfScore {
+					font-size: 13px;
+				}
+			}
+			.events {
+				gap: 8px;
+			}
+		}
+	}
+}
