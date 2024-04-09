@@ -102,7 +102,7 @@ export interface MatchLeague {
 interface Lineup {
 	coach: Coach;
 	formation: string;
-	startXI: LineupPlayer[];
+	startXI: { player: LineupPlayer }[];
 	substitutes: LineupPlayer[];
 	team: {
 		id: number;

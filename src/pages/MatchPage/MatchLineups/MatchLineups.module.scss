@@ -1,0 +1,55 @@
+@use '../../../styles/variables' as *;
+
+.matchLineups {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 8px;
+	.notAvailable {
+		text-align: center;
+		font-size: 14px;
+		color: $grayFontColor;
+	}
+
+	.info,
+	.formationInfo {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		background-color: $secondaryColorAlpha;
+		border-radius: 4px;
+		padding: 3px 6px;
+		.formation,
+		.infoTitle {
+			font-size: 12px;
+			text-transform: uppercase;
+			color: $grayFontColor;
+			font-weight: 450;
+		}
+		.formation {
+			font-size: 13px;
+			letter-spacing: 0.5px;
+		}
+	}
+	.formationInfo {
+		justify-content: space-between;
+	}
+}
+
+@media (min-width: 576px) {
+	.matchLineups {
+		gap: 12px;
+		.notAvailable {
+			font-size: 16px;
+		}
+		.info,
+		.formationInfo {
+			padding: 4px 8px;
+			.infoTitle {
+				font-size: 13px;
+			}
+		}
+	}
+}

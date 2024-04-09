@@ -1,0 +1,85 @@
+@use '../../../../styles/variables' as *;
+
+.pitch {
+	position: relative;
+	width: 100%;
+	border-radius: 4px;
+	overflow: hidden;
+	.background {
+		width: 100%;
+		.horizontal {
+			display: none;
+			width: 10%;
+			background-position: center;
+			background-size: cover;
+		}
+		.vertical {
+			display: block;
+			width: 100%;
+			background-position: center;
+			background-size: cover;
+		}
+	}
+	.home,
+	.away {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		height: 50%;
+		width: 100%;
+		left: 0;
+		.line {
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+			.player {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+			}
+		}
+	}
+	.home {
+		top: 0;
+	}
+	.away {
+		flex-direction: column-reverse;
+		bottom: 0;
+	}
+}
+
+@media (min-width: 576px) {
+	.pitch {
+		.background {
+			.horizontal {
+				display: flex;
+				width: 100%;
+			}
+			.vertical {
+				display: none;
+				width: 0%;
+			}
+		}
+		.home,
+		.away {
+			height: 100%;
+			width: 50%;
+			flex-direction: row;
+			.line {
+				width: 100%;
+				flex-direction: column-reverse;
+				.player {
+					height: 100%;
+				}
+			}
+		}
+		.home {
+			left: 0;
+		}
+		.away {
+			flex-direction: row-reverse;
+			left: 50%;
+		}
+	}
+}

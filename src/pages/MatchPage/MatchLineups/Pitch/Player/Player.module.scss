@@ -1,0 +1,68 @@
+@use '../../../../../styles/variables' as *;
+
+.player {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	.jersey {
+		width: min-content;
+		position: relative;
+		.icon {
+			font-size: 44px;
+		}
+		.number {
+			position: absolute;
+			left: 50%;
+			top: 20%;
+			font-family: 'Teko', sans-serif;
+			font-weight: 400;
+			letter-spacing: 0.5px;
+			transform: translatex(-50%);
+			font-weight: 300;
+			font-size: 20px;
+		}
+	}
+	.name {
+		margin-top: -4px;
+		padding: 1px;
+		border-radius: 4px;
+		max-width: 75%;
+		background-color: $dirtyWhiteColor;
+		overflow: hidden;
+		p {
+			margin: 0;
+			white-space: nowrap;
+			text-align: center;
+			overflow: hidden;
+			font-size: 11px;
+			text-overflow: ellipsis;
+			color: $blackFontColor;
+			cursor: pointer;
+			&:hover {
+				color: $blackFontColorHover;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.player {
+		.jersey {
+			.icon {
+				font-size: 48px;
+			}
+			.number {
+				font-size: 22px;
+			}
+		}
+		.name {
+			padding: 1px 4px;
+			p {
+				font-size: 12px;
+			}
+		}
+	}
+}
