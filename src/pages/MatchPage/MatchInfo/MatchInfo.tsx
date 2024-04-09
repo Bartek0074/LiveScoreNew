@@ -7,9 +7,9 @@ interface Props {
 }
 
 export default function MatchInfo({ match }: Props) {
-	const referee = match.fixture.referee;
-	const venueName = match.fixture.venue.name;
-	const venueCity = match.fixture.venue.city;
+	const referee = match?.fixture?.referee;
+	const venueName = match?.fixture?.venue?.name;
+	const venueCity = match?.fixture?.venue?.city;
 
 	const infos = [
 		{
@@ -24,11 +24,11 @@ export default function MatchInfo({ match }: Props) {
 	return (
 		<div className={styles.matchInfo}>
 			{infos.map((info, index) => {
-				if (info.value) {
+				if (info?.value) {
 					return (
 						<div className={styles.info} key={index}>
-							<p className={styles.label}>{info.label}:</p>
-							<p className={styles.value}>{info.value}</p>
+							<p className={styles.label}>{info?.label}:</p>
+							<p className={styles.value}>{info?.value}</p>
 						</div>
 					);
 				}
