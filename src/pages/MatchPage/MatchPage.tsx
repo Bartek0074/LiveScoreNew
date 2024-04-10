@@ -5,16 +5,17 @@ import { useParams } from 'react-router-dom';
 
 import LoadingBall from '../../components/LoadingBall/LoadingBall';
 import Button from '../../components/Button/Button';
-
-import { useCurrentMatchStore } from '../../data/currentMatch/store';
-
-import { MatchPageFilters } from '../../utils/matchPageFilters';
-import LeagueInfo from './LeagueInfo/LeagueInfo';
 import Result from './Result/Result';
+import LeagueInfo from './LeagueInfo/LeagueInfo';
 import MatchInfo from './MatchInfo/MatchInfo';
 import MatchSummary from './MatchSummary/MatchSummary';
 import MatchStats from './MatchStats/MatchStats';
 import MatchLineups from './MatchLineups/MatchLineups';
+import MatchStandings from './MatchStandings/MatchStandings';
+
+import { useCurrentMatchStore } from '../../data/currentMatch/store';
+
+import { MatchPageFilters } from '../../utils/matchPageFilters';
 
 const buttons = [
 	{ text: 'Summary', filter: MatchPageFilters.Summary },
@@ -49,10 +50,13 @@ export default function MatchPage() {
 			if (id) {
 				await getRemoteCurrentMatch(parseInt(id));
 			}
+			if (filter === MatchPageFilters.Standings) {
+				console.log('buum');
+			}
 		};
 
 		const fetchDataPeriodically = () => {
-			fetchDataInterval = setInterval(refetchData, 30000);
+			fetchDataInterval = setInterval(refetchData, 1000 * 30);
 		};
 
 		fetchData();
@@ -105,9 +109,7 @@ export default function MatchPage() {
 						<MatchLineups match={currentMatch} />
 					)}
 					{filter === MatchPageFilters.Standings && (
-						<div className={styles.standings}>
-							<p>Standings</p>
-						</div>
+						<MatchStandings leagueId={currentMatch.league.id} />
 					)}
 				</div>
 				{currentMatch.fixture.venue.name || currentMatch.fixture.referee ? (

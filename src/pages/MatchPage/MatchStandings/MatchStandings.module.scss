@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as *;
+
+.standings {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	.loading {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $dirtyWhiteColor;
+	}
+}
