@@ -71,7 +71,11 @@ export default function MatchIcon({
 				}
 				alt=''
 			/>
-			{count && <div className={styles.count}>{count}</div>}
+			{count && (
+				<div className={styles.count}>
+					<p>{count}</p>
+				</div>
+			)}
 		</div>
 	);
 }

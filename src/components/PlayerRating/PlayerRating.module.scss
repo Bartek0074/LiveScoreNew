@@ -1,23 +1,29 @@
 @use '../../styles/variables' as *;
 
 .rating {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	&Small {
-		padding: 1px 2px;
+		height: 18px;
+		padding: 0px 2px;
 		border-radius: 4px;
 		p {
-			font-size: 10.5px;
-			letter-spacing: -0.5px;
+			font-size: 11px;
+			letter-spacing: -0.25px;
 		}
 	}
 	&Medium {
-		padding: 1px 2px;
+		height: 21px;
+		padding: 0px 3px;
 		border-radius: 5px;
 		p {
-			font-size: 11px;
+			font-size: 11.5px;
 		}
 	}
 	&Large {
-		padding: 2px 3px;
+		height: 24px;
+		padding: 0px 4px;
 		border-radius: 6px;
 		p {
 			font-size: 12px;
@@ -42,24 +48,31 @@
 	p {
 		color: $whiteFontColor;
 		font-weight: 450;
+		text-align: center;
 	}
 }
 
 @media (min-width: 576px) {
 	.rating {
 		&Small {
+			height: 20px;
+			padding: 0 2px;
+			p {
+				font-size: 11.5px;
+			}
+		}
+		&Medium {
+			height: 26px;
+			padding: 0 4px;
 			p {
 				font-size: 12px;
 			}
 		}
-		&Medium {
-			p {
-				font-size: 12.5px;
-			}
-		}
 		&Large {
+			height: 28px;
+			padding: 0 5px;
 			p {
-				font-size: 14px;
+				font-size: 13px;
 			}
 		}
 	}

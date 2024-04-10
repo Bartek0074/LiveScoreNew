@@ -19,7 +19,7 @@
 		}
 	}
 	.name {
-		margin-right: 3px;
+		margin-right: 4px;
 		color: $blackFontColor;
 		font-size: 13px;
 		font-weight: 500;
@@ -29,6 +29,9 @@
 			color: $blackFontColorHover;
 			text-decoration: underline;
 		}
+	}
+	.rating{
+		margin-right: 4px;
 	}
 	.icons {
 		display: flex;
@@ -45,7 +48,11 @@
 		}
 		.name {
 			margin-right: 0;
-			margin-left: 3px;
+			margin-left: 4px;
+		}
+		.rating{
+			margin-right: 0;
+			margin-left: 4px;
 		}
 		.icons {
 			flex-direction: row;
@@ -64,8 +71,15 @@
 			}
 		}
 		.name {
-			margin-right: 4px;
+			margin-right: 6px;
 			font-size: 14px;
+		}
+		.rating{
+			margin-right: 6px;
+		}
+		.icons {
+			margin-right: 5px;
+			gap: 4px;
 		}
 		&Away {
 			.number {
@@ -75,7 +89,15 @@
 
 			.name {
 				margin-right: 0;
-				margin-left: 4px;
+				margin-left: 6px;
+			}
+			.rating{
+				margin-right: 0;
+				margin-left: 6px;
+			}
+			.icons {
+				margin-right: 0;
+				margin-left: 5px;
 			}
 		}
 	}

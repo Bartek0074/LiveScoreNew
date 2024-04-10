@@ -28,35 +28,8 @@
 		border: 1px solid $grayBorderColorDark;
 	}
 	&Small {
-		width: 13px;
-		height: 13px;
-		border-radius: 4px;
-		.count {
-			width: 10px;
-			height: 10px;
-			right: -5px;
-			top: -5px;
-			font-size: 9px;
-			border-radius: 3px;
-		}
-	}
-	&Medium {
-		width: 21px;
-		height: 21px;
-		border-radius: 6px;
-		padding: 3px;
-		.count {
-			width: 12px;
-			height: 12px;
-			right: -6px;
-			top: -6px;
-			font-size: 9px;
-			border-radius: 3px;
-		}
-	}
-	&Large {
-		width: 24px;
-		height: 24px;
+		width: 18px;
+		height: 18px;
 		border-radius: 4px;
 		.count {
 			width: 13px;
@@ -67,30 +40,58 @@
 			border-radius: 3px;
 		}
 	}
+	&Medium {
+		width: 21px;
+		height: 21px;
+		border-radius: 6px;
+		padding: 2px;
+		.count {
+			width: 14px;
+			height: 14px;
+			right: -7px;
+			top: -7px;
+			font-size: 10.5px;
+			border-radius: 3px;
+		}
+	}
+	&Large {
+		width: 24px;
+		height: 24px;
+		border-radius: 4px;
+		.count {
+			width: 16px;
+			height: 16px;
+			right: -8px;
+			top: -8px;
+			font-size: 11px;
+			border-radius: 3px;
+		}
+	}
 }
 
 @media (min-width: 576px) {
 	.matchIcon {
 		&Small {
-			width: 17px;
-			height: 17px;
+			width: 20px;
+			height: 20px;
+			padding: 1px;
 			.count {
-				width: 12px;
-				height: 13px;
-				right: -6px;
-				top: -6px;
-				font-size: 10px;
+				width: 15px;
+				height: 15px;
+				right: -8px;
+				top: -8px;
+				font-size: 10.5px;
 			}
 		}
 		&Medium {
 			width: 26px;
 			height: 26px;
 			.count {
-				width: 14px;
-				height: 15px;
-				right: -7px;
-				top: -7px;
-				font-size: 10px;
+				width: 16px;
+				height: 16px;
+				right: -8px;
+				top: -8px;
+				font-size: 11px;
 			}
 		}
 		&Large {
@@ -98,12 +99,12 @@
 			height: 28px;
 			border-radius: 5px;
 			.count {
-				width: 15px;
-				height: 16px;
-				right: -8px;
-				top: -8px;
-				font-size: 11px;
-				border-radius: 4px;
+				width: 19px;
+				height: 19px;
+				right: -9px;
+				top: -9px;
+				font-size: 12px;
+				border-radius: 5px;
 			}
 		}
 	}

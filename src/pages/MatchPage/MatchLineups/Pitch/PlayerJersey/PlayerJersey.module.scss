@@ -50,8 +50,8 @@
 	.rating {
 		position: absolute;
 		left: 50%;
-		transform: translateX(14px);
-		top: 45%;
+		transform: translateX(12px);
+		top: 41%;
 	}
 	.icons {
 		display: flex;
@@ -59,7 +59,7 @@
 		position: absolute;
 		left: 50%;
 		bottom: 28%;
-		transform: translateX(-24px);
+		transform: translateX(-30px);
 		gap: 2px;
 	}
 }
@@ -80,8 +80,12 @@
 				font-size: 12px;
 			}
 		}
+		.rating{
+			// top: 44%;
+			transform: translateX(14px);
+		}
 		.icons {
-			transform: translateX(-32px);
+			transform: translateX(-34px);
 		}
 	}
 }

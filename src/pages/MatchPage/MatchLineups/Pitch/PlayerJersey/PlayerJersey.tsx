@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
 import MatchIcon from '../../../../../components/MatchIcon/MatchIcon';
+import PlayerRating from '../../../../../components/PlayerRating/PlayerRating';
 
 import { AppRoutes } from '../../../../../utils/routes';
 import { FaTshirt } from 'react-icons/fa';
@@ -13,7 +14,6 @@ import {
 	EventDetail,
 	EventType,
 } from '../../../../../data/currentMatch/types';
-import PlayerRating from '../../../../../components/PlayerRating/PlayerRating';
 
 interface Props {
 	player: MatchPlayer;

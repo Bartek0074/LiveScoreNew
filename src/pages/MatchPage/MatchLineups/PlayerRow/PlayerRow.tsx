@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
 import MatchIcon from '../../../../components/MatchIcon/MatchIcon';
+import PlayerRating from '../../../../components/PlayerRating/PlayerRating';
 
 import { AppRoutes } from '../../../../utils/routes';
 import {
@@ -80,9 +81,11 @@ export default function PlayerRow({ player, events, number, isAway }: Props) {
 					{lastName ? `${lastName} ${firstName.charAt(0)}.` : firstName}
 				</p>
 			</div>
-			{/* <div className={ratingClasses}>
-				<p>{playerRating.toFixed(1)}</p>
-			</div> */}
+			{playerRating ? (
+				<div className={styles.rating}>
+					<PlayerRating value={playerRating} size='small' />
+				</div>
+			) : null}
 			<div className={styles.icons}>
 				{isPlayerSubstituted && (
 					<MatchIcon type='substitution' size='small' color='dark' />
