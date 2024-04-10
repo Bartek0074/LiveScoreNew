@@ -41,8 +41,6 @@ export default function MatchSummary({ match }: Props) {
 		);
 	}
 
-	console.log(match)
-
 	return (
 		<div className={styles.matchSummary}>
 			<div className={styles.half}>

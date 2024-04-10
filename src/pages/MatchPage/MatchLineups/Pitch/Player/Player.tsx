@@ -35,6 +35,7 @@ export default function Player({
 		navigate(`${AppRoutes.player.replace(':id', player.player.id.toString())}`);
 	};
 
+	const firstName = player.player.name.split(' ')[0];
 	const lastName = player.player.name.split(' ')[1];
 
 	const playerRating = parseFloat(player.statistics[0].games.rating);
@@ -96,7 +97,7 @@ export default function Player({
 				</span>
 			</div>
 			<div className={styles.name}>
-				<p onClick={navToPlayer}>{lastName}</p>
+				<p onClick={navToPlayer}>{lastName ? lastName : firstName}</p>
 			</div>
 			<div className={ratingClasses}>
 				<p>{playerRating.toFixed(1)}</p>

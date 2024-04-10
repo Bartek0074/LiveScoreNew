@@ -100,7 +100,8 @@ export default function MatchInfo({ event, events, isAway }: Props) {
 				event.detail === EventDetail.GoalCancelled ||
 				event.detail === EventDetail.Penalty ||
 				event.detail === EventDetail.MissedPenalty ||
-				event.detail === EventDetail.OwnGoal) && (
+				event.detail === EventDetail.OwnGoal ||
+				event.detail === EventDetail.CardUpgrade) && (
 				<p className={styles.detail}>({event.detail})</p>
 			)}
 		</div>

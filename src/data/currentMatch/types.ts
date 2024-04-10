@@ -65,6 +65,7 @@ export enum EventDetail {
 	RedCard = 'Red Card',
 	Offside = 'Goal Disallowed - offside',
 	GoalCancelled = 'Goal cancelled',
+	CardUpgrade = 'Card upgrade',
 }
 
 export interface MatchStatistic {
