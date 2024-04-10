@@ -36,6 +36,22 @@
 	.formationInfo {
 		justify-content: space-between;
 	}
+	.playerList {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		.home {
+			width: 50%;
+		}
+		.away {
+			width: 50%;
+		}
+		.home,.away{
+			.player{
+				padding: 3px 0px;
+			}
+		}
+	}
 }
 
 @media (min-width: 576px) {

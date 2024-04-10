@@ -4,7 +4,7 @@ import {
 	CurrentMatch,
 	PlayerPosition,
 } from '../../../../data/currentMatch/types';
-import Player from './Player/Player';
+import PlayerJersey from './PlayerJersey/PlayerJersey';
 
 interface Props {
 	match: CurrentMatch;
@@ -66,7 +66,7 @@ export default function Pitch({ match }: Props) {
 								) {
 									return (
 										<div key={playerIndex} className={styles.player}>
-											<Player
+											<PlayerJersey
 												player={matchPlayer}
 												events={match.events}
 												number={player.player.number}
@@ -103,7 +103,7 @@ export default function Pitch({ match }: Props) {
 								) {
 									return (
 										<div key={playerIndex} className={styles.player}>
-											<Player
+											<PlayerJersey
 												player={matchPlayer}
 												events={match.events}
 												number={player.player.number}

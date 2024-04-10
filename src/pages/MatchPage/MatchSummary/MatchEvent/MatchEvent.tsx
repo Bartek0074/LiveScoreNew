@@ -23,7 +23,6 @@ import {
 	isRedCardEvent,
 	isSecondYellowCardEvent,
 	isVarEvent,
-	isYellowCardEvent,
 } from '../../../../data/currentMatch/helpers';
 
 interface Props {

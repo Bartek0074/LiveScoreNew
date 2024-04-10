@@ -136,7 +136,7 @@ interface Lineup {
 	coach: Coach;
 	formation: string;
 	startXI: { player: LineupPlayer }[];
-	substitutes: LineupPlayer[];
+	substitutes: { player: LineupPlayer }[];
 	team: {
 		id: number;
 		logo: string;

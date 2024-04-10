@@ -1,34 +1,26 @@
-import styles from './Player.module.scss';
+import styles from './PlayerRow.module.scss';
 import classNames from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
 
-import MatchIcon from '../../../../../components/MatchIcon/MatchIcon';
+import MatchIcon from '../../../../components/MatchIcon/MatchIcon';
 
-import { AppRoutes } from '../../../../../utils/routes';
-import { FaTshirt } from 'react-icons/fa';
+import { AppRoutes } from '../../../../utils/routes';
 import {
 	MatchPlayer,
 	MatchEvent,
 	EventDetail,
 	EventType,
-} from '../../../../../data/currentMatch/types';
+} from '../../../../data/currentMatch/types';
 
 interface Props {
 	player: MatchPlayer;
 	events: MatchEvent[];
 	number: number;
-	shirtColor: string;
-	numberColor: string;
+	isAway: boolean;
 }
 
-export default function Player({
-	player,
-	events,
-	number,
-	shirtColor,
-	numberColor,
-}: Props) {
+export default function PlayerRow({ player, events, number, isAway }: Props) {
 	const navigate = useNavigate();
 
 	const navToPlayer = () => {
@@ -41,7 +33,10 @@ export default function Player({
 	const playerRating = parseFloat(player.statistics[0].games.rating);
 
 	const playerEvents = events.filter(
-		(event) => event.player.id === player.player.id
+		(event) =>
+			event.player.id === player.player.id ||
+			(event.type === EventType.Substitution &&
+				event.assist.id === player.player.id)
 	);
 
 	const playerGoalsCount = playerEvents.filter(
@@ -70,38 +65,24 @@ export default function Player({
 			event.type === EventType.Card && event.detail === EventDetail.RedCard
 	).length;
 
-	const ratingClasses = classNames(styles.rating, {
-		[styles.ratingVeryGood]: playerRating >= 9,
-		[styles.ratingGood]: playerRating < 9 && playerRating >= 7,
-		[styles.ratingAverage]: playerRating < 7 && playerRating >= 5,
-		[styles.ratingBad]: playerRating < 5 && playerRating >= 3,
-		[styles.ratingVeryBad]: playerRating < 3,
+	const playerRowClasses = classNames(styles.playerRow, {
+		[styles.playerRowAway]: isAway,
 	});
 
 	return (
-		<div className={styles.player}>
-			<div className={styles.jersey}>
-				<FaTshirt
-					className={styles.icon}
-					style={{
-						color: `#${shirtColor}`,
-					}}
-				/>
-				<span
-					className={styles.number}
-					style={{
-						color: `#${numberColor}`,
-					}}
-				>
-					{number}
-				</span>
+		<div className={playerRowClasses}>
+			<div className={styles.number}>
+				<p>{number}</p>
 			</div>
+
 			<div className={styles.name}>
-				<p onClick={navToPlayer}>{lastName ? lastName : firstName}</p>
+				<p onClick={navToPlayer}>
+					{lastName ? `${lastName} ${firstName.charAt(0)}.` : firstName}
+				</p>
 			</div>
-			<div className={ratingClasses}>
+			{/* <div className={ratingClasses}>
 				<p>{playerRating.toFixed(1)}</p>
-			</div>
+			</div> */}
 			<div className={styles.icons}>
 				{isPlayerSubstituted && (
 					<MatchIcon type='substitution' size='small' color='dark' />
