@@ -1,0 +1,66 @@
+@use '../../styles/variables' as *;
+
+.rating {
+	&Small {
+		padding: 1px 2px;
+		border-radius: 4px;
+		p {
+			font-size: 10.5px;
+			letter-spacing: -0.5px;
+		}
+	}
+	&Medium {
+		padding: 1px 2px;
+		border-radius: 5px;
+		p {
+			font-size: 11px;
+		}
+	}
+	&Large {
+		padding: 2px 3px;
+		border-radius: 6px;
+		p {
+			font-size: 12px;
+		}
+	}
+	&VeryGood {
+		background-color: $ratingVeryGoodColor;
+	}
+	&Good {
+		background-color: $ratingGoodColor;
+	}
+	&Average {
+		background-color: $ratingAverageColor;
+	}
+
+	&Bad {
+		background-color: $ratingBadColor;
+	}
+	&VeryBad {
+		background-color: $ratingVeryBadColor;
+	}
+	p {
+		color: $whiteFontColor;
+		font-weight: 450;
+	}
+}
+
+@media (min-width: 576px) {
+	.rating {
+		&Small {
+			p {
+				font-size: 12px;
+			}
+		}
+		&Medium {
+			p {
+				font-size: 12.5px;
+			}
+		}
+		&Large {
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+}

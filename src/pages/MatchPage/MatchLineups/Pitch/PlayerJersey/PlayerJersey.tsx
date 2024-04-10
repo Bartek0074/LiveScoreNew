@@ -13,6 +13,7 @@ import {
 	EventDetail,
 	EventType,
 } from '../../../../../data/currentMatch/types';
+import PlayerRating from '../../../../../components/PlayerRating/PlayerRating';
 
 interface Props {
 	player: MatchPlayer;
@@ -100,7 +101,7 @@ export default function PlayerJersey({
 				<p onClick={navToPlayer}>{lastName ? lastName : firstName}</p>
 			</div>
 			<div className={ratingClasses}>
-				<p>{playerRating.toFixed(1)}</p>
+				<PlayerRating value={playerRating} size='small' />
 			</div>
 			<div className={styles.icons}>
 				{isPlayerSubstituted && (
