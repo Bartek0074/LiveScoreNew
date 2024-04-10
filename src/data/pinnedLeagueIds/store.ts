@@ -33,10 +33,16 @@ export const usePinnedLeagueIdsStore = create<PinnedLeagueIdsStore>(
 				const newPinnedLeagues = pinnedLeagues.filter(
 					(id: number) => id !== leagueId
 				);
-				cookies.set(CookiesEnum.pinnedLeagues, newPinnedLeagues);
+				cookies.set(CookiesEnum.pinnedLeagues, newPinnedLeagues, {
+					path: '/',
+					maxAge: 2147483647,
+				});
 				set({ pinnedLeagueIds: newPinnedLeagues });
 			} else {
-				cookies.set(CookiesEnum.pinnedLeagues, [...pinnedLeagues, leagueId]);
+				cookies.set(CookiesEnum.pinnedLeagues, [...pinnedLeagues, leagueId], {
+					path: '/',
+					maxAge: 2147483647,
+				});
 				set({ pinnedLeagueIds: [...pinnedLeagues, leagueId] });
 			}
 		},

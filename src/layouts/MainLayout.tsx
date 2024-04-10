@@ -30,9 +30,13 @@ export default function MainLayout() {
 
 	useEffect(() => {
 		if (!cookies.get(CookiesEnum.firstVisit)) {
-			cookies.set(CookiesEnum.firstVisit, 'true', { path: '/' });
+			cookies.set(CookiesEnum.firstVisit, 'true', {
+				path: '/',
+				maxAge: 2147483647,
+			});
 			cookies.set(CookiesEnum.pinnedLeagues, defaultPinnedLeagues, {
 				path: '/',
+				maxAge: 2147483647,
 			});
 		}
 		getPinnedLeagueIds();
