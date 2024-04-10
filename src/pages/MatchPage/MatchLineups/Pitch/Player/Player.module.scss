@@ -5,7 +5,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: fit-content;
+	position: relative;
 	.jersey {
 		width: min-content;
 		position: relative;
@@ -19,7 +20,7 @@
 			font-family: 'Teko', sans-serif;
 			font-weight: 400;
 			letter-spacing: 0.5px;
-			transform: translatex(-50%);
+			transform: translateX(-50%);
 			font-weight: 300;
 			font-size: 20px;
 		}
@@ -28,7 +29,7 @@
 		margin-top: -4px;
 		padding: 1px;
 		border-radius: 4px;
-		max-width: 75%;
+		max-width: 80px;
 		background-color: $dirtyWhiteColor;
 		overflow: hidden;
 		p {
@@ -45,6 +46,45 @@
 				text-decoration: underline;
 			}
 		}
+	}
+	.rating {
+		position: absolute;
+		left: 50%;
+		transform: translateX(14px);
+		top: 45%;
+		padding: 1px 2px 1px;
+		border-radius: 4px;
+		&VeryGood {
+			background-color: $ratingVeryGoodColor;
+		}
+		&Good {
+			background-color: $ratingGoodColor;
+		}
+		&Average {
+			background-color: $ratingAverageColor;
+		}
+
+		&Bad {
+			background-color: $ratingBadColor;
+		}
+		&VeryBad {
+			background-color: $ratingVeryBadColor;
+		}
+		p {
+			font-size: 10.5px;
+			letter-spacing: -0.5px;
+			font-weight: 450;
+			color: $whiteFontColor;
+		}
+	}
+	.icons {
+		display: flex;
+		flex-direction: column-reverse;
+		position: absolute;
+		left: 50%;
+		bottom: 28%;
+		transform: translateX(-24px);
+		gap: 2px;
 	}
 }
 
@@ -63,6 +103,14 @@
 			p {
 				font-size: 12px;
 			}
+		}
+		.rating {
+			p {
+				font-size: 12px;
+			}
+		}
+		.icons {
+			transform: translateX(-32px);
 		}
 	}
 }

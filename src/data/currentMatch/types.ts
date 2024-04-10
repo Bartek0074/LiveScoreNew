@@ -10,8 +10,8 @@ export interface CurrentMatch {
 	league: MatchLeague;
 	lineups: [Lineup, Lineup];
 	players: [
-		{ players: Player[]; team: PlayerTeam },
-		{ players: Player[]; team: PlayerTeam }
+		{ players: MatchPlayer[]; team: PlayerTeam },
+		{ players: MatchPlayer[]; team: PlayerTeam }
 	];
 	score: Score;
 	statistics: [
@@ -65,6 +65,38 @@ export enum EventDetail {
 	RedCard = 'Red Card',
 	Offside = 'Goal Disallowed - offside',
 	GoalCancelled = 'Goal cancelled',
+}
+
+export interface MatchStatistic {
+	type: StatisticType;
+	value: string | number | null;
+}
+
+export enum StatisticType {
+	ExpectedGoals = 'expected_goals',
+	BallPossession = 'Ball Possession',
+	TotalShots = 'Total Shots',
+	ShotsOnGoal = 'Shots on Goal',
+	ShotsOffGoal = 'Shots off Goal',
+	BlockedShots = 'Blocked Shots',
+	ShotsInsideBox = 'Shots insidebox',
+	ShotsOutsideBox = 'Shots outsidebox',
+	CornerKicks = 'Corner Kicks',
+	Offsides = 'Offsides',
+	GoalkeeperSaves = 'Goalkeeper Saves',
+	Fouls = 'Fouls',
+	RedCards = 'Red Cards',
+	YellowCards = 'Yellow Cards',
+	TotalPasses = 'Total passes',
+	PassesAccurate = 'Passes accurate',
+	PassesPercentage = 'Passes %',
+}
+
+export enum PlayerPosition {
+	Goalkeeper = 'G',
+	Defender = 'D',
+	Midfielder = 'M',
+	Forward = 'F',
 }
 
 interface Fixture {
@@ -123,7 +155,7 @@ interface LineupPlayer {
 	grid: string;
 	name: string;
 	number: number;
-	pos: string;
+	pos: PlayerPosition;
 }
 
 interface Colors {
@@ -132,13 +164,13 @@ interface Colors {
 	primary: string;
 }
 
-interface Player {
+export interface MatchPlayer {
 	player: {
 		id: number;
 		name: string;
 		photo: string;
 	};
-	statisctics: [PlayerStatistics];
+	statistics: [PlayerStatistics];
 }
 
 interface PlayerStatistics {
@@ -163,7 +195,7 @@ interface PlayerStatistics {
 		captain: boolean;
 		minutes: number;
 		number: number;
-		position: string;
+		position: PlayerPosition;
 		rating: string;
 		substitute: boolean;
 	};
@@ -221,31 +253,6 @@ interface Score {
 		away: number;
 		home: number;
 	};
-}
-
-export interface MatchStatistic {
-	type: StatisticType;
-	value: string | number | null;
-}
-
-export enum StatisticType {
-	ExpectedGoals = 'expected_goals',
-	BallPossession = 'Ball Possession',
-	TotalShots = 'Total Shots',
-	ShotsOnGoal = 'Shots on Goal',
-	ShotsOffGoal = 'Shots off Goal',
-	BlockedShots = 'Blocked Shots',
-	ShotsInsideBox = 'Shots insidebox',
-	ShotsOutsideBox = 'Shots outsidebox',
-	CornerKicks = 'Corner Kicks',
-	Offsides = 'Offsides',
-	GoalkeeperSaves = 'Goalkeeper Saves',
-	Fouls = 'Fouls',
-	RedCards = 'Red Cards',
-	YellowCards = 'Yellow Cards',
-	TotalPasses = 'Total passes',
-	PassesAccurate = 'Passes accurate',
-	PassesPercentage = 'Passes %',
 }
 
 interface StatisticsTeam {

@@ -7,23 +7,12 @@ import {
 	EventDetail,
 	EventType,
 } from '../../../../data/currentMatch/types';
+import MatchIcon from '../../../../components/MatchIcon/MatchIcon';
 
 interface Props {
 	event: MatchEventProps;
 	isAway: boolean;
 }
-
-const svgSources = {
-	yellowCard: '../icons/yellowCard.svg',
-	redCard: '../icons/redCard.svg',
-	goal: '../icons/goal.svg',
-	ownGoal: '../icons/ownGoal.svg',
-	penalty: '../icons/penalty.svg',
-	penaltyMissed: '../icons/penaltyMissed.svg',
-	substitution: '../icons/substitution.svg',
-	offside: '../icons/offside.svg',
-	var: '../icons/var.svg',
-};
 
 export default function MatchInfo({ event, isAway }: Props) {
 	const navigate = useNavigate();
@@ -35,10 +24,6 @@ export default function MatchInfo({ event, isAway }: Props) {
 	const eventClasses = classNames(styles.event, {
 		[styles.eventAway]: isAway,
 	});
-
-	const renderImage = (src: string, className: string) => (
-		<img className={className} src={src} alt='' />
-	);
 
 	if (event.time.elapsed <= 0) return null;
 
@@ -52,31 +37,40 @@ export default function MatchInfo({ event, isAway }: Props) {
 			</div>
 			<div className={styles.icon}>
 				{event.type === EventType.Goal &&
-					event.detail === EventDetail.NormalGoal &&
-					renderImage(svgSources.goal, styles.goal)}
+					event.detail === EventDetail.NormalGoal && (
+						<MatchIcon type='goal' size='medium' />
+					)}
 				{event.type === EventType.Goal &&
-					event.detail === EventDetail.OwnGoal &&
-					renderImage(svgSources.ownGoal, styles.ownGoal)}
+					event.detail === EventDetail.OwnGoal && (
+						<MatchIcon type='ownGoal' size='medium' />
+					)}
 				{event.type === EventType.Goal &&
-					event.detail === EventDetail.Penalty &&
-					renderImage(svgSources.penalty, styles.goal)}
+					event.detail === EventDetail.Penalty && (
+						<MatchIcon type='penalty' size='medium' />
+					)}
 				{event.type === EventType.Goal &&
-					event.detail === EventDetail.MissedPenalty &&
-					renderImage(svgSources.penaltyMissed, styles.penaltyMissed)}
+					event.detail === EventDetail.MissedPenalty && (
+						<MatchIcon type='penaltyMissed' size='medium' />
+					)}
 				{event.type === EventType.Card &&
-					event.detail === EventDetail.YellowCard &&
-					renderImage(svgSources.yellowCard, styles.yellowCard)}
+					event.detail === EventDetail.YellowCard && (
+						<MatchIcon type='yellowCard' size='medium' />
+					)}
 				{event.type === EventType.Card &&
-					event.detail === EventDetail.RedCard &&
-					renderImage(svgSources.redCard, styles.redCard)}
-				{event.type === EventType.Substitution &&
-					renderImage(svgSources.substitution, styles.substitution)}
+					event.detail === EventDetail.RedCard && (
+						<MatchIcon type='redCard' size='medium' />
+					)}
+				{event.type === EventType.Substitution && (
+					<MatchIcon type='substitution' size='medium' />
+				)}
 				{event.type === EventType.Var &&
-					event.detail === EventDetail.Offside &&
-					renderImage(svgSources.offside, styles.offside)}
+					event.detail === EventDetail.Offside && (
+						<MatchIcon type='offside' size='medium' />
+					)}
 				{event.type === EventType.Var &&
-					event.detail !== EventDetail.Offside &&
-					renderImage(svgSources.var, styles.var)}
+					event.detail !== EventDetail.Offside && (
+						<MatchIcon type='var' size='medium' />
+					)}
 			</div>
 			<p
 				className={styles.player}

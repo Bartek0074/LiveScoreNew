@@ -19,18 +19,8 @@
 		}
 	}
 	.icon {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 21px;
-		min-width: 21px;
-		padding: 3px;
 		margin-right: 6px;
-		border: 1px solid $grayBorderColor;
-		border-radius: 6px;
-		img {
-			height: 100%;
-		}
+		
 	}
 	.player {
 		margin-right: 3px;
@@ -95,9 +85,6 @@
 		}
 		.icon {
 			margin-right: 8px;
-			padding: 4px;
-			height: 26px;
-			min-width: 26px;
 		}
 		.player {
 			margin-right: 4px;

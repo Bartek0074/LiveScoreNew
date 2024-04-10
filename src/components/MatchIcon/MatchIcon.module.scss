@@ -1,0 +1,110 @@
+@use '../../styles/variables' as *;
+
+.matchIcon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background-color: $dirtyWhiteColor;
+
+	img {
+		max-height: calc(100% - 2px);
+		max-width: calc(100% - 2px);
+		background-position: center;
+		background-size: cover;
+	}
+	.count {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		background-color: $grayFontColor;
+		color: $whiteFontColor;
+	}
+	&Light {
+		border: 1px solid $grayBorderColor;
+	}
+	&Dark {
+		border: 1px solid $grayBorderColorDark;
+	}
+	&Small {
+		width: 13px;
+		height: 13px;
+		border-radius: 4px;
+		.count {
+			width: 10px;
+			height: 10px;
+			right: -5px;
+			top: -5px;
+			font-size: 9px;
+			border-radius: 3px;
+		}
+	}
+	&Medium {
+		width: 21px;
+		height: 21px;
+		border-radius: 6px;
+		padding: 3px;
+		.count {
+			width: 12px;
+			height: 12px;
+			right: -6px;
+			top: -6px;
+			font-size: 9px;
+			border-radius: 3px;
+		}
+	}
+	&Large {
+		width: 24px;
+		height: 24px;
+		border-radius: 4px;
+		.count {
+			width: 13px;
+			height: 13px;
+			right: -6px;
+			top: -6px;
+			font-size: 10px;
+			border-radius: 3px;
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.matchIcon {
+		&Small {
+			width: 17px;
+			height: 17px;
+			.count {
+				width: 12px;
+				height: 13px;
+				right: -6px;
+				top: -6px;
+				font-size: 10px;
+			}
+		}
+		&Medium {
+			width: 26px;
+			height: 26px;
+			.count {
+				width: 14px;
+				height: 15px;
+				right: -7px;
+				top: -7px;
+				font-size: 10px;
+			}
+		}
+		&Large {
+			width: 28px;
+			height: 28px;
+			border-radius: 5px;
+			.count {
+				width: 15px;
+				height: 16px;
+				right: -8px;
+				top: -8px;
+				font-size: 11px;
+				border-radius: 4px;
+			}
+		}
+	}
+}

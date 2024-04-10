@@ -1,7 +1,9 @@
 import styles from './Pitch.module.scss';
-import classNames from 'classnames';
 
-import { CurrentMatch } from '../../../../data/currentMatch/types';
+import {
+	CurrentMatch,
+	PlayerPosition,
+} from '../../../../data/currentMatch/types';
 import Player from './Player/Player';
 
 interface Props {
@@ -55,20 +57,26 @@ export default function Pitch({ match }: Props) {
 					return (
 						<div key={lineIndex} className={styles.line}>
 							{homeStartXI.map((player, playerIndex) => {
-								if (player?.player?.grid.startsWith(`${lineIndex + 1}`)) {
+								const matchPlayer = match.players[0].players.find(
+									(findPlayer) => player.player.id === findPlayer.player.id
+								);
+								if (
+									player?.player?.grid.startsWith(`${lineIndex + 1}`) &&
+									matchPlayer
+								) {
 									return (
 										<div key={playerIndex} className={styles.player}>
 											<Player
-												playerId={player.player.id}
-												name={player.player.name}
+												player={matchPlayer}
+												events={match.events}
 												number={player.player.number}
 												shirtColor={
-													player.player.pos === 'G'
+													player.player.pos === PlayerPosition.Goalkeeper
 														? homeGoalkeeperShirtColor
 														: homePlayerShirtColor
 												}
 												numberColor={
-													player.player.pos === 'G'
+													player.player.pos === PlayerPosition.Goalkeeper
 														? homeGoalkeeperNumberColor
 														: homePlayerNumberColor
 												}
@@ -86,20 +94,26 @@ export default function Pitch({ match }: Props) {
 					return (
 						<div key={lineIndex} className={styles.line}>
 							{awayStartXI.map((player, playerIndex) => {
-								if (player?.player?.grid.startsWith(`${lineIndex + 1}`)) {
+								const matchPlayer = match.players[1].players.find(
+									(findPlayer) => player.player.id === findPlayer.player.id
+								);
+								if (
+									player?.player?.grid.startsWith(`${lineIndex + 1}`) &&
+									matchPlayer
+								) {
 									return (
 										<div key={playerIndex} className={styles.player}>
 											<Player
-												playerId={player.player.id}
-												name={player.player.name}
+												player={matchPlayer}
+												events={match.events}
 												number={player.player.number}
 												shirtColor={
-													player.player.pos === 'G'
+													player.player.pos === PlayerPosition.Goalkeeper
 														? awayGoalkeeperShirtColor
 														: awayPlayerShirtColor
 												}
 												numberColor={
-													player.player.pos === 'G'
+													player.player.pos === PlayerPosition.Goalkeeper
 														? awayGoalkeeperNumberColor
 														: awayPlayerNumberColor
 												}
