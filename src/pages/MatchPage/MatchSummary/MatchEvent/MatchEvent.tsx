@@ -1,20 +1,38 @@
 import styles from './MatchEvent.module.scss';
 import classNames from 'classnames';
+
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../../../../utils/routes';
+
+import MatchIcon from '../../../../components/MatchIcon/MatchIcon';
+
 import {
 	MatchEvent as MatchEventProps,
 	EventDetail,
 	EventType,
 } from '../../../../data/currentMatch/types';
-import MatchIcon from '../../../../components/MatchIcon/MatchIcon';
+
+import {
+	isFirstYellowCardEvent,
+	isNormalGoalEvent,
+	isOffsideEvent,
+	isOwnGoalEvent,
+	isPenaltyGoalEvent,
+	isPenaltyMissedEvent,
+	isRedCardAfterTwoYellowCardsEvent,
+	isRedCardEvent,
+	isSecondYellowCardEvent,
+	isVarEvent,
+	isYellowCardEvent,
+} from '../../../../data/currentMatch/helpers';
 
 interface Props {
 	event: MatchEventProps;
+	events: MatchEventProps[];
 	isAway: boolean;
 }
 
-export default function MatchInfo({ event, isAway }: Props) {
+export default function MatchInfo({ event, events, isAway }: Props) {
 	const navigate = useNavigate();
 
 	const navToPlayer = (playerId: string) => {
@@ -25,7 +43,11 @@ export default function MatchInfo({ event, isAway }: Props) {
 		[styles.eventAway]: isAway,
 	});
 
-	if (event.time.elapsed <= 0) return null;
+	if (
+		event.time.elapsed <= 0 ||
+		isRedCardAfterTwoYellowCardsEvent(event, events)
+	)
+		return null;
 
 	return (
 		<div className={eventClasses}>
@@ -36,41 +58,26 @@ export default function MatchInfo({ event, isAway }: Props) {
 				</p>
 			</div>
 			<div className={styles.icon}>
-				{event.type === EventType.Goal &&
-					event.detail === EventDetail.NormalGoal && (
-						<MatchIcon type='goal' size='medium' />
-					)}
-				{event.type === EventType.Goal &&
-					event.detail === EventDetail.OwnGoal && (
-						<MatchIcon type='ownGoal' size='medium' />
-					)}
-				{event.type === EventType.Goal &&
-					event.detail === EventDetail.Penalty && (
-						<MatchIcon type='penalty' size='medium' />
-					)}
-				{event.type === EventType.Goal &&
-					event.detail === EventDetail.MissedPenalty && (
-						<MatchIcon type='penaltyMissed' size='medium' />
-					)}
-				{event.type === EventType.Card &&
-					event.detail === EventDetail.YellowCard && (
-						<MatchIcon type='yellowCard' size='medium' />
-					)}
-				{event.type === EventType.Card &&
-					event.detail === EventDetail.RedCard && (
-						<MatchIcon type='redCard' size='medium' />
-					)}
+				{isNormalGoalEvent(event) && <MatchIcon type='goal' size='medium' />}
+				{isOwnGoalEvent(event) && <MatchIcon type='ownGoal' size='medium' />}
+				{isPenaltyGoalEvent(event) && (
+					<MatchIcon type='penalty' size='medium' />
+				)}
+				{isPenaltyMissedEvent(event) && (
+					<MatchIcon type='penaltyMissed' size='medium' />
+				)}
+				{isFirstYellowCardEvent(event, events) && (
+					<MatchIcon type='yellowCard' size='medium' />
+				)}
+				{isSecondYellowCardEvent(event, events) && (
+					<MatchIcon type='secondYellowCard' size='medium' />
+				)}
+				{isRedCardEvent(event) && <MatchIcon type='redCard' size='medium' />}
 				{event.type === EventType.Substitution && (
 					<MatchIcon type='substitution' size='medium' />
 				)}
-				{event.type === EventType.Var &&
-					event.detail === EventDetail.Offside && (
-						<MatchIcon type='offside' size='medium' />
-					)}
-				{event.type === EventType.Var &&
-					event.detail !== EventDetail.Offside && (
-						<MatchIcon type='var' size='medium' />
-					)}
+				{isOffsideEvent(event) && <MatchIcon type='offside' size='medium' />}
+				{isVarEvent(event) && <MatchIcon type='var' size='medium' />}
 			</div>
 			<p
 				className={styles.player}

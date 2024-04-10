@@ -4,6 +4,7 @@ import classNames from 'classnames';
 interface Props {
 	type:
 		| 'yellowCard'
+		| 'secondYellowCard'
 		| 'redCard'
 		| 'goal'
 		| 'ownGoal'
@@ -20,6 +21,7 @@ interface Props {
 
 const svgSources = {
 	yellowCard: '../icons/yellowCard.svg',
+	secondYellowCard: '../icons/secondYellowCard.svg',
 	redCard: '../icons/redCard.svg',
 	goal: '../icons/goal.svg',
 	ownGoal: '../icons/ownGoal.svg',
@@ -49,6 +51,8 @@ export default function MatchIcon({
 				src={
 					type === 'yellowCard'
 						? svgSources.yellowCard
+						: type === 'secondYellowCard'
+						? svgSources.secondYellowCard
 						: type === 'redCard'
 						? svgSources.redCard
 						: type === 'goal'

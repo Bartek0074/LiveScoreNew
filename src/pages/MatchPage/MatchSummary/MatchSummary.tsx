@@ -56,7 +56,14 @@ export default function MatchSummary({ match }: Props) {
 					{sortedEvents.map((event, index) => {
 						const isAway = event.team.id === match?.teams.away.id;
 						if (event.time.elapsed <= 45) {
-							return <MatchEvent key={index} event={event} isAway={isAway} />;
+							return (
+								<MatchEvent
+									key={index}
+									event={event}
+									events={match.events}
+									isAway={isAway}
+								/>
+							);
 						}
 						return null;
 					})}
@@ -86,7 +93,12 @@ export default function MatchSummary({ match }: Props) {
 								const isAway = event.team.id === match?.teams.away.id;
 								if (event.time.elapsed > 45 && event.time.elapsed <= 90) {
 									return (
-										<MatchEvent key={index} event={event} isAway={isAway} />
+										<MatchEvent
+											key={index}
+											event={event}
+											events={match.events}
+											isAway={isAway}
+										/>
 									);
 								}
 								return null;
