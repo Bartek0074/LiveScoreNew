@@ -14,7 +14,6 @@ import {
 	EventType,
 } from '../../../../../data/currentMatch/types';
 
-
 interface Props {
 	player: MatchPlayer;
 	events: MatchEvent[];
@@ -65,11 +64,10 @@ export default function Player({
 			event.type === EventType.Card && event.detail === EventDetail.YellowCard
 	).length;
 
-	const hasPlayerRedCard =
-		playerEvents.some(
-			(event) =>
-				event.type === EventType.Card && event.detail === EventDetail.RedCard
-		) || playerYellowCardsCount >= 2;
+	const playerRedCardsCount = playerEvents.filter(
+		(event) =>
+			event.type === EventType.Card && event.detail === EventDetail.RedCard
+	).length;
 
 	const ratingClasses = classNames(styles.rating, {
 		[styles.ratingVeryGood]: playerRating >= 9,
@@ -107,12 +105,16 @@ export default function Player({
 				{isPlayerSubstituted && (
 					<MatchIcon type='substitution' size='small' color='dark' />
 				)}
+				{playerYellowCardsCount === 2 && (
+					<MatchIcon type='secondYellowCard' size='small' color='dark' />
+				)}
+				{playerRedCardsCount === 1 && playerYellowCardsCount !== 2 && (
+					<MatchIcon type='redCard' size='small' color='dark' />
+				)}
 				{playerYellowCardsCount > 0 && (
 					<MatchIcon type='yellowCard' size='small' color='dark' />
 				)}
-				{hasPlayerRedCard && (
-					<MatchIcon type='redCard' size='small' color='dark' />
-				)}
+
 				{playerOwnGoalsCount > 0 && (
 					<MatchIcon
 						type='ownGoal'
