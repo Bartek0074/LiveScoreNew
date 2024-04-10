@@ -9,11 +9,11 @@ interface Props {
 }
 
 export default function MatchLineups({ match }: Props) {
-	if (!match.lineups[0])
+	if (!match.lineups[0] || !match.players[0])
 		return (
 			<div className={styles.matchLineups}>
 				<p className={styles.notAvailable}>
-					Match stats are not available at the moment. Please try again later.
+					Match lineups are not available.
 				</p>
 			</div>
 		);

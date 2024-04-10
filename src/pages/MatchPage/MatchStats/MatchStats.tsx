@@ -50,7 +50,7 @@ export default function MatchStats({ match }: Props) {
 		return (
 			<div className={styles.matchStats}>
 				<p className={styles.notAvailable}>
-					Match stats are not available at the moment. Please try again later.
+					Match stats are not available.
 				</p>
 			</div>
 		);

@@ -34,9 +34,7 @@ export default function MatchSummary({ match }: Props) {
 	if (!isMatchSummaryAvailable) {
 		return (
 			<div className={styles.matchSummary}>
-				<p className={styles.notAvailable}>
-					Match summary is not available at the moment. Please try again later.
-				</p>
+				<p className={styles.notAvailable}>Match summary is not available.</p>
 			</div>
 		);
 	}
