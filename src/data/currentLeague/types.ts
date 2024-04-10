@@ -12,7 +12,7 @@ export interface CurrentStanding {
 		logo: string;
 		flag: string;
 		season: number;
-		standings: StandingsProps[];
+		standings: [StandingProps[]];
 	};
 }
 
@@ -56,7 +56,7 @@ interface SeasonCoverageFixturesProps {
 	statistics_players: boolean;
 }
 
-interface StandingsProps {
+export interface StandingProps {
 	rank: number;
 	team: {
 		id: number;

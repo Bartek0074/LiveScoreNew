@@ -1,1 +1,107 @@
 @use '../../styles/variables' as *;
+
+.standings {
+	width: 100%;
+	border-radius: 6px;
+	overflow: hidden;
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		thead {
+			background-color: $secondaryColorAlpha;
+			tr {
+				color: $grayFontColor;
+				th {
+					padding: 6px 0px;
+					font-weight: 400;
+					text-transform: uppercase;
+					font-size: 13px;
+					letter-spacing: 0.25px;
+				}
+				.team {
+					padding-left: 6px;
+					text-align-last: left;
+				}
+				.points {
+					font-weight: 500;
+				}
+			}
+		}
+		tbody {
+			tr {
+				border-bottom: 1px solid $grayBorderColor;
+				&:hover {
+					background-color: $shadowHoverColor;
+				}
+				.formCell {
+					width: 126px;
+				}
+				td {
+					padding: 4px;
+					text-align: center;
+					font-size: 13px;
+					letter-spacing: 0.25px;
+					color: $grayFontColor;
+				}
+				.rank {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-weight: 500;
+					font-size: 14px;
+					color: $blackFontColor;
+				}
+				.team {
+					display: flex;
+					align-items: center;
+					.image {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: 36px;
+						height: 22px;
+						img {
+							height: 100%;
+						}
+					}
+					p {
+						cursor: pointer;
+						&:hover {
+							color: $grayFontColorHover;
+							text-decoration: underline;
+						}
+					}
+				}
+				.points {
+					font-weight: 500;
+					color: $blackFontColor;
+				}
+				.form {
+					display: flex;
+					gap: 4px;
+					&Item {
+						width: 20px;
+						height: 20px;
+						border-radius: 3px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-size: 13px;
+						font-weight: 450;
+						color: $dirtyWhiteColor;
+						&Win {
+							background-color: $formWonColor;
+						}
+						&Draw {
+							background-color: $formDrawColor;
+						}
+						&Lost {
+							background-color: $formLostColor;
+						}
+					}
+				}
+			}
+		}
+	}
+}

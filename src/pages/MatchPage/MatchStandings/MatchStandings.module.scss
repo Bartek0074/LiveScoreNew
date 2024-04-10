@@ -4,10 +4,14 @@
 	display: flex;
 	justify-content: center;
 	height: 100%;
+	width: 100%;
 	.loading {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		background-color: $dirtyWhiteColor;
+	}
+	.standing {
+		width: 100%;
 	}
 }

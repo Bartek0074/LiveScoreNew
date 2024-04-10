@@ -82,10 +82,11 @@ export default function MatchStandings({ leagueId }: Props) {
 	return (
 		<div className={styles.standings}>
 			{currentStandings.map((standing, index) => {
+				console.log(standing)
 				return (
-					<div key={index}>
+					<div key={index} className={styles.standing}>
 						{standing.league.name}
-						<Standings standings={standing} />
+						<Standings standings={standing.league.standings[0]} />
 					</div>
 				);
 			})}
