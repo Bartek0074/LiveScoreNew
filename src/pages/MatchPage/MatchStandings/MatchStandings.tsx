@@ -75,12 +75,24 @@ export default function MatchStandings({ leagueId }: Props) {
 		);
 	}
 
+	if (!currentStandings[0])
+		return (
+			<div className={styles.standings}>
+				<p className={styles.notAvailable}>
+					Match standings are not available.
+				</p>
+			</div>
+		);
+
 	return (
 		<div className={styles.standings}>
-			{currentStandings.map((standing, index) => {
+			{currentStandings[0]?.league.standings.map((standing, index) => {
 				return (
 					<div key={index} className={styles.standing}>
-						<Standings standings={standing.league.standings[0]} />
+						<Standings
+							standings={standing}
+							withGroup={currentStandings[0].league.standings.length > 1}
+						/>
 					</div>
 				);
 			})}

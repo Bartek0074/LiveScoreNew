@@ -13,9 +13,10 @@ import { colors } from '../../utils/colors';
 
 interface Props {
 	standings: StandingProps[];
+	withGroup?: boolean;
 }
 
-export default function Standings({ standings }: Props) {
+export default function Standings({ standings, withGroup = false }: Props) {
 	const navigate = useNavigate();
 
 	const allDescriptions: string[] = [];
@@ -34,6 +35,11 @@ export default function Standings({ standings }: Props) {
 	};
 	return (
 		<div className={styles.standings}>
+			{withGroup ? (
+				<div className={styles.title}>
+					<p>Group: {standings[0].group}</p>
+				</div>
+			) : null}
 			<div className={styles.table}>
 				<table>
 					<thead>
