@@ -1,0 +1,20 @@
+@use '../variables' as *;
+
+.ant-select {
+	&:hover {
+		.ant-select-selector {
+			border-color: $primaryColor !important;
+		}
+	}
+	&-open {
+		.ant-select-selector {
+			border-color: $primaryColor !important;
+		}
+	}
+}
+
+.ant-select-dropdown {
+	.ant-select-item-option-selected {
+		background-color: $primaryColorAlpha !important;
+	}
+}
