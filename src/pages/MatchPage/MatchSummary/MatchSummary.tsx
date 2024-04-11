@@ -45,9 +45,16 @@ export default function MatchSummary({ match }: Props) {
 				<div className={styles.halfInfo}>
 					<p className={styles.halfType}>1st half</p>
 					<p className={styles.halfScore}>
-						{match?.fixture?.status?.short === MatchStatuses.FirstHalf
-							? `${match?.goals?.home} - ${match?.goals?.away}`
-							: `${match?.score?.halftime?.home} - ${match?.score?.halftime?.away}`}
+						{match?.goals?.home !== null &&
+						match?.goals?.away !== null &&
+						match?.score?.halftime?.home !== null &&
+						match?.score?.halftime?.away !== null ? (
+							<>
+								{match?.fixture?.status?.short === MatchStatuses.FirstHalf
+									? `${match?.goals?.home} - ${match?.goals?.away}`
+									: `${match?.score?.halftime?.home} - ${match?.score?.halftime?.away}`}
+							</>
+						) : null}
 					</p>
 				</div>
 				<div className={styles.events}>
@@ -73,17 +80,28 @@ export default function MatchSummary({ match }: Props) {
 						<div className={styles.halfInfo}>
 							<p className={styles.halfType}>2nd half</p>
 							<p className={styles.halfScore}>
-								{shortStatus === MatchStatuses.SecondHalf
-									? `${match?.goals?.home - match?.score?.halftime?.home} - ${
-											match?.goals?.away - match?.score?.halftime?.away
-									  }`
-									: `${
-											match?.score?.fulltime?.home -
-											match?.score?.halftime?.home
-									  } - ${
-											match?.score?.fulltime?.away -
-											match?.score?.halftime?.away
-									  }`}
+								{match.goals.home !== null &&
+								match.goals.away !== null &&
+								match.score.fulltime.home !== null &&
+								match.score.fulltime.away !== null &&
+								match.score.halftime.home !== null &&
+								match.score.halftime.away !== null ? (
+									<>
+										{shortStatus === MatchStatuses.SecondHalf
+											? `${
+													match?.goals?.home - match?.score?.halftime?.home
+											  } - ${
+													match?.goals?.away - match?.score?.halftime?.away
+											  }`
+											: `${
+													match?.score?.fulltime?.home -
+													match?.score?.halftime?.home
+											  } - ${
+													match?.score?.fulltime?.away -
+													match?.score?.halftime?.away
+											  }`}
+									</>
+								) : null}
 							</p>
 						</div>
 						<div className={styles.events}>
