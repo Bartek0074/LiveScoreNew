@@ -2,104 +2,253 @@
 
 .standings {
 	width: 100%;
-	border-radius: 6px;
-	overflow: hidden;
-	table {
-		width: 100%;
-		border-collapse: collapse;
+	border-radius: 4px;
+	.table {
+		overflow-x: scroll;
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			thead {
+				background-color: $secondaryColorAlpha;
+				tr {
+					color: $grayFontColor;
+					th {
+						padding: 6px 4px;
+						font-weight: 400;
+						text-transform: uppercase;
+						font-size: 12px;
+						letter-spacing: 0.5px;
+					}
+					.team {
+						padding-left: 10px;
+						text-align-last: left;
+					}
+					.points {
+						font-weight: 500;
+					}
+				}
+			}
+			tbody {
+				tr {
+					height: 100%;
+					border-bottom: 1px solid $grayBorderColor;
+					&:hover {
+						background-color: $shadowHoverColor;
+					}
+					td {
+						height: 100%;
+						padding: 6px 4px;
+						text-align: center;
+						font-size: 12px;
+						letter-spacing: 0.25px;
+						color: $grayFontColor;
+					}
+					.rankCell {
+						width: 18px;
+						.rank {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							width: 18px;
+							height: 18px;
+							font-weight: 500;
+							font-size: 13px;
+							letter-spacing: -0.5px;
+							border-radius: 4px;
+							color: $blackFontColor;
+							&First,
+							&Second,
+							&Third,
+							&Fourth,
+							&Fifth,
+							&Sixth {
+								color: $dirtyWhiteColor;
+							}
+							&First {
+								background-color: $rankFirstColor;
+							}
+							&Second {
+								background-color: $rankSecondColor;
+							}
+							&Third {
+								background-color: $rankThirdColor;
+							}
 
-		thead {
-			background-color: $secondaryColorAlpha;
-			tr {
-				color: $grayFontColor;
-				th {
-					padding: 6px 0px;
-					font-weight: 400;
-					text-transform: uppercase;
-					font-size: 13px;
-					letter-spacing: 0.25px;
-				}
-				.team {
-					padding-left: 6px;
-					text-align-last: left;
-				}
-				.points {
-					font-weight: 500;
+							&Fourth {
+								background-color: $rankFourthColor;
+							}
+							&Fifth {
+								background-color: $rankFifthColor;
+							}
+							&Sixth {
+								background-color: $rankSixthColor;
+							}
+						}
+					}
+					.team {
+						display: flex;
+						align-items: center;
+						.image {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							width: 32px;
+							height: 18px;
+							cursor: pointer;
+							img {
+								height: 100%;
+							}
+						}
+						p {
+							cursor: pointer;
+							&:hover {
+								color: $grayFontColorHover;
+								text-decoration: underline;
+							}
+						}
+					}
+					.points {
+						font-weight: 500;
+						color: $blackFontColor;
+					}
+					.formCell {
+						width: 102px;
+						.form {
+							display: flex;
+							gap: 3px;
+							&Item {
+								width: 18px;
+								height: 18px;
+								border-radius: 3px;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								font-size: 12px;
+								font-weight: 450;
+								color: $dirtyWhiteColor;
+								&Win {
+									background-color: $formWonColor;
+								}
+								&Draw {
+									background-color: $formDrawColor;
+								}
+								&Lost {
+									background-color: $formLostColor;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
-		tbody {
-			tr {
-				border-bottom: 1px solid $grayBorderColor;
-				&:hover {
-					background-color: $shadowHoverColor;
+	}
+	.legend {
+		margin-top: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		&Item {
+			display: flex;
+			align-items: center;
+			.rect {
+				margin-left: 6px;
+				margin-right: 10px;
+				width: 12px;
+				min-width: 12px;
+				height: 12px;
+				min-height: 12px;
+				border-radius: 3px;
+				&First {
+					background-color: $rankFirstColor;
 				}
-				.formCell {
-					width: 126px;
+				&Second {
+					background-color: $rankSecondColor;
 				}
-				td {
-					padding: 4px;
-					text-align: center;
+				&Third {
+					background-color: $rankThirdColor;
+				}
+				&Fourth {
+					background-color: $rankFourthColor;
+				}
+				&Fifth {
+					background-color: $rankFifthColor;
+				}
+				&Sixth {
+					background-color: $rankSixthColor;
+				}
+			}
+			p {
+				font-size: 12px;
+				letter-spacing: 0.25px;
+				color: $grayFontColor;
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.standings {
+		border-radius: 6px;
+		.table {
+			table {
+				thead {
+					tr {
+						th {
+							padding: 8px 4px;
+							font-size: 13px;
+						}
+						.team {
+							padding-left: 12px;
+						}
+					}
+				}
+				tbody {
+					tr {
+						td {
+							font-size: 13px;
+						}
+						.rankCell {
+							width: 22px;
+							.rank {
+								width: 22px;
+								height: 22px;
+								font-size: 14px;
+							}
+						}
+						.team {
+							.image {
+								width: 40px;
+								height: 22px;
+							}
+						}
+						.formCell {
+							width: 126px;
+							.form {
+								gap: 4px;
+								&Item {
+									width: 22px;
+									height: 22px;
+									border-radius: 4px;
+									font-size: 14px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.legend {
+			margin-top: 8px;
+			gap: 6px;
+			&Item {
+				.rect {
+					margin-left: 8px;
+					margin-right: 12px;
+					width: 14px;
+					height: 14px;
+				}
+				p {
 					font-size: 13px;
-					letter-spacing: 0.25px;
-					color: $grayFontColor;
-				}
-				.rank {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					font-weight: 500;
-					font-size: 14px;
-					color: $blackFontColor;
-				}
-				.team {
-					display: flex;
-					align-items: center;
-					.image {
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						width: 36px;
-						height: 22px;
-						img {
-							height: 100%;
-						}
-					}
-					p {
-						cursor: pointer;
-						&:hover {
-							color: $grayFontColorHover;
-							text-decoration: underline;
-						}
-					}
-				}
-				.points {
-					font-weight: 500;
-					color: $blackFontColor;
-				}
-				.form {
-					display: flex;
-					gap: 4px;
-					&Item {
-						width: 20px;
-						height: 20px;
-						border-radius: 3px;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						font-size: 13px;
-						font-weight: 450;
-						color: $dirtyWhiteColor;
-						&Win {
-							background-color: $formWonColor;
-						}
-						&Draw {
-							background-color: $formDrawColor;
-						}
-						&Lost {
-							background-color: $formLostColor;
-						}
-					}
 				}
 			}
 		}

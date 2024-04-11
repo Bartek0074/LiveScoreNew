@@ -1,3 +1,3 @@
 export const colors = {
-	tooltipBackground: '#107571',
+	tooltipBackground: '#09514e',
 };

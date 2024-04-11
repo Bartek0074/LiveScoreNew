@@ -56,11 +56,7 @@ export default function MatchStandings({ leagueId }: Props) {
 				fetchDataInterval = setInterval(refetchData, 1000 * 60 * 5);
 			};
 
-			if (currentStandings[0]?.league?.id !== leagueId) {
-				fetchData();
-			} else {
-				setLoading(false);
-			}
+			fetchData();
 			fetchDataPeriodically();
 
 			return () => {
@@ -82,10 +78,8 @@ export default function MatchStandings({ leagueId }: Props) {
 	return (
 		<div className={styles.standings}>
 			{currentStandings.map((standing, index) => {
-				console.log(standing)
 				return (
 					<div key={index} className={styles.standing}>
-						{standing.league.name}
 						<Standings standings={standing.league.standings[0]} />
 					</div>
 				);
