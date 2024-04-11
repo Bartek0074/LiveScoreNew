@@ -7,6 +7,7 @@ import { AppRoutes } from './utils/routes';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage/HomePage';
 import MatchPage from './pages/MatchPage/MatchPage';
+import PlayerPage from './pages/PlayerPage/PlayerPage';
 
 function App() {
 	const router = createBrowserRouter([
@@ -17,7 +18,7 @@ function App() {
 				{ path: AppRoutes.home, element: <HomePage /> },
 				{ path: AppRoutes.match, element: <MatchPage /> },
 				{ path: AppRoutes.league, element: <p>League</p> },
-				{ path: AppRoutes.player, element: <p>Player</p> },
+				{ path: AppRoutes.player, element: <PlayerPage /> },
 				{ path: AppRoutes.team, element: <p>Team</p> },
 			],
 		},

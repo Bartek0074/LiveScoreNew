@@ -50,9 +50,6 @@ export default function MatchPage() {
 			if (id) {
 				await getRemoteCurrentMatch(parseInt(id));
 			}
-			if (filter === MatchPageFilters.Standings) {
-				console.log('buum');
-			}
 		};
 
 		const fetchDataPeriodically = () => {
