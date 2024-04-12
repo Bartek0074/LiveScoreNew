@@ -35,39 +35,51 @@ export default function TransferList({ transfers }: Props) {
 							<tr key={index}>
 								<td>{transfer.date}</td>
 								<td>
-									<div className={styles.team}>
-										<div
-											className={styles.logo}
-											onClick={() => navToTeam(transfer.teams.out.id)}
-										>
-											<ImageComponent
-												src={transfer.teams.out.logo}
-												alt={transfer.teams.out.name}
-												loaderSize={12}
-											/>
+									{transfer.teams.out.logo && transfer.teams.out.name ? (
+										<div className={styles.team}>
+											<div
+												className={styles.logo}
+												onClick={() => navToTeam(transfer.teams.out.id)}
+											>
+												{transfer.teams.out.logo && (
+													<ImageComponent
+														src={transfer.teams.out.logo}
+														alt={transfer.teams.out.name}
+														loaderSize={12}
+													/>
+												)}
+											</div>
+											<p onClick={() => navToTeam(transfer.teams.out.id)}>
+												{transfer.teams.out.name}
+											</p>
 										</div>
-										<p onClick={() => navToTeam(transfer.teams.out.id)}>
-											{transfer.teams.out.name}
-										</p>
-									</div>
+									) : (
+										'No data'
+									)}
 								</td>
 								<td>{transfer.type}</td>
 								<td>
-									<div className={styles.team}>
-										<div
-											className={styles.logo}
-											onClick={() => navToTeam(transfer.teams.in.id)}
-										>
-											<ImageComponent
-												src={transfer.teams.in.logo}
-												alt={transfer.teams.in.name}
-												loaderSize={12}
-											/>
+									{transfer.teams.in.logo && transfer.teams.in.name ? (
+										<div className={styles.team}>
+											<div
+												className={styles.logo}
+												onClick={() => navToTeam(transfer.teams.in.id)}
+											>
+												{transfer.teams.in.logo && (
+													<ImageComponent
+														src={transfer.teams.in.logo}
+														alt={transfer.teams.in.name}
+														loaderSize={12}
+													/>
+												)}
+											</div>
+											<p onClick={() => navToTeam(transfer.teams.in.id)}>
+												{transfer.teams.in.name}
+											</p>
 										</div>
-										<p onClick={() => navToTeam(transfer.teams.in.id)}>
-											{transfer.teams.in.name}
-										</p>
-									</div>
+									) : (
+										'No data'
+									)}
 								</td>
 							</tr>
 						))}
