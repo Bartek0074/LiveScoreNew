@@ -5,12 +5,26 @@ import ImageComponent from '../../../components/ImageComponent/ImageComponent';
 
 import { formatDateToMonthDates } from '../../../utils/formatDateToMonthNames';
 
+import { useCountriesStore } from '../../../data/countries/store';
+import { returnCountryFlag } from '../../../data/countries/helpers';
+
 interface Props {
 	player: CurrentPlayer;
 }
 
 export default function PlayerInfo({ player }: Props) {
-	console.log(player);
+	const { countries } = useCountriesStore();
+
+	console.log(player)
+
+	const nationalityFlag = returnCountryFlag(
+		countries,
+		player.player.nationality
+	);
+	const birthPlaceFlag = returnCountryFlag(
+		countries,
+		player.player.birth.country
+	);
 
 	return (
 		<div className={styles.playerInfo}>
@@ -33,7 +47,7 @@ export default function PlayerInfo({ player }: Props) {
 						</div>
 						<div className={styles.value}>
 							<p>
-								{formatDateToMonthDates(new Date(player.player.birth.date))}(
+								{formatDateToMonthDates(new Date(player.player.birth.date))} (
 								{player.player.age})
 							</p>
 						</div>
@@ -43,6 +57,15 @@ export default function PlayerInfo({ player }: Props) {
 							<p>Place of birth:</p>
 						</div>
 						<div className={styles.value}>
+							{birthPlaceFlag && (
+								<div className={styles.flag}>
+									<ImageComponent
+										src={birthPlaceFlag}
+										alt='flag'
+										loaderSize={12}
+									/>
+								</div>
+							)}
 							<p>{player.player.birth.place}</p>
 						</div>
 					</div>
@@ -51,7 +74,16 @@ export default function PlayerInfo({ player }: Props) {
 							<p>Nationality:</p>
 						</div>
 						<div className={styles.value}>
-							<p>{player.player.nationality} </p>
+							{nationalityFlag && (
+								<div className={styles.flag}>
+									<ImageComponent
+										src={nationalityFlag}
+										alt='flag'
+										loaderSize={12}
+									/>
+								</div>
+							)}
+							<p>{player.player.nationality}</p>
 						</div>
 					</div>
 					<div className={styles.info}>

@@ -11,6 +11,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { AppRoutes } from '../utils/routes';
 
 import { usePinnedLeagueIdsStore } from '../data/pinnedLeagueIds/store';
+import { useCountriesStore } from '../data/countries/store';
 
 import { IoLogoGithub } from 'react-icons/io5';
 
@@ -21,6 +22,7 @@ export default function MainLayout() {
 	const cookies = new Cookies();
 
 	const { getPinnedLeagueIds } = usePinnedLeagueIdsStore();
+	const { getRemoteCountries } = useCountriesStore();
 
 	const navToHome = () => {
 		navigate(AppRoutes.home);
@@ -40,6 +42,7 @@ export default function MainLayout() {
 			});
 		}
 		getPinnedLeagueIds();
+		getRemoteCountries();
 	}, []);
 
 	return (

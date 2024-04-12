@@ -38,17 +38,31 @@
 			margin-left: 8px;
 			.info {
 				display: flex;
+				align-items: center;
 				flex-direction: row;
 				.label {
 					font-size: 13px;
 					color: $blackFontColor;
 					font-weight: 300;
-					margin-right: 2px;
+					margin-right: 4px;
 				}
 				.value {
+					display: flex;
+					align-items: center;
 					font-size: 13px;
 					color: $blackFontColor;
 					font-weight: 400;
+					.flag {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						height: 14px;
+						margin-right: 3px;
+						border: 1px solid $grayFontColor;
+						img {
+							height: 100%;
+						}
+					}
 				}
 			}
 		}
@@ -71,10 +85,14 @@
 				.info {
 					.label {
 						font-size: 14px;
-						margin-right: 4px;
+						margin-right: 6px;
 					}
 					.value {
 						font-size: 14px;
+						.flag{
+							height: 16px;
+							margin-right: 4px;
+						}
 					}
 				}
 			}
@@ -95,10 +113,10 @@
 				column-gap: 16px;
 				.info {
 					&:nth-child(2) {
-						grid-area:  2 / 1 / 3 / 2;
+						grid-area: 2 / 1 / 3 / 2;
 					}
 					&:nth-child(3) {
-						grid-area:  3 / 1 / 4 / 2;
+						grid-area: 3 / 1 / 4 / 2;
 					}
 				}
 			}
