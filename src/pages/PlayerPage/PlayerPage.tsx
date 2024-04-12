@@ -48,7 +48,10 @@ export default function PlayerPage() {
 
 	useEffect(() => {
 		if (playerSeasons.length > 0) {
-			const currentSeason = Math.max(...playerSeasons);
+			const currentYear = new Date().getFullYear();
+			const currentMonth = new Date().getMonth();
+			const currentSeason = currentMonth < 7 ? currentYear - 1 : currentYear;
+
 			setSeason(currentSeason);
 		}
 	}, [playerSeasons]);
