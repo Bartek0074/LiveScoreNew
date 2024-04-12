@@ -17,7 +17,9 @@ export default function PlayerInfo({ player }: Props) {
 	const { countries } = useCountriesStore();
 	const { currentPlayerTransfers } = useCurrentPlayerStore();
 
-	const currentClub = currentPlayerTransfers?.transfers[0]?.teams?.in;
+	const currentClub =
+		currentPlayerTransfers?.transfers[0]?.teams?.in ||
+		player.statistics[0].team;
 
 	const nationalityFlag = returnCountryFlag(
 		countries,
@@ -38,12 +40,12 @@ export default function PlayerInfo({ player }: Props) {
 				<div className={styles.team}>
 					<div className={styles.logo}>
 						<ImageComponent
-							src={currentClub.logo}
-							alt={currentClub.name}
+							src={currentClub?.logo}
+							alt={currentClub?.name}
 							loaderSize={12}
 						/>
 					</div>
-					<p>{currentClub.name}</p>
+					<p>{currentClub?.name}</p>
 				</div>
 			</div>
 			<div className={styles.content}>
@@ -58,12 +60,12 @@ export default function PlayerInfo({ player }: Props) {
 					<div className={styles.clubDesktopInfo}>
 						<div className={styles.logo}>
 							<ImageComponent
-								src={currentClub.logo}
-								alt={currentClub.name}
+								src={currentClub?.logo}
+								alt={currentClub?.name}
 								loaderSize={12}
 							/>
 						</div>
-						<p>{currentClub.name}</p>
+						<p>{currentClub?.name}</p>
 					</div>
 					<div className={styles.infos}>
 						<div className={styles.info}>

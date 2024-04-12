@@ -2,7 +2,11 @@
 
 .transfers {
 	width: 100%;
-
+	.notAvailable {
+		text-align: center;
+		font-size: 14px;
+		color: $grayFontColor;
+	}
 	.table {
 		overflow-x: scroll;
 		table {
@@ -69,6 +73,9 @@
 
 @media (min-width: 576px) {
 	.transfers {
+		.notAvailable {
+			font-size: 16px;
+		}
 		.table {
 			table {
 				thead {

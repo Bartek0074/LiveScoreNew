@@ -114,7 +114,7 @@ export default function PlayerPage() {
 						</div>
 					)}
 					{filter === PlayerPageFilters.Transfers && (
-						<TransferList transfers={currentPlayerTransfers.transfers} />
+						<TransferList transfers={currentPlayerTransfers?.transfers} />
 					)}
 				</div>
 			</div>

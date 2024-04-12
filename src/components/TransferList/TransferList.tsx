@@ -18,6 +18,15 @@ export default function TransferList({ transfers }: Props) {
 		navigate(`${AppRoutes.team.replace(':id', id.toString())}`);
 	};
 
+	if (transfers === undefined || transfers.length === 0)
+		return (
+			<div className={styles.transfers}>
+				<p className={styles.notAvailable}>
+					Player transfers are not available.
+				</p>
+			</div>
+		);
+
 	return (
 		<div className={styles.transfers}>
 			<div className={styles.table}>
