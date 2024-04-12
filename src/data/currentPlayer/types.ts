@@ -96,3 +96,30 @@ interface CurrentPlayerStatistic {
 		saved: number;
 	};
 }
+
+export interface CurrentPlayerTransfers {
+	player: {
+		id: number;
+		name: string;
+	};
+	update: string;
+	transfers: TransferProps[];
+}
+
+interface TransferProps {
+	date: string;
+	type: string;
+
+	teams: {
+		in: {
+			id: number;
+			name: string;
+			logo: string;
+		};
+		out: {
+			id: number;
+			name: string;
+			logo: string;
+		};
+	};
+}

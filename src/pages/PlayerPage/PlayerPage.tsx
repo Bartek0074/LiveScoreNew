@@ -21,7 +21,6 @@ const buttons = [
 export default function PlayerPage() {
 	const { id } = useParams();
 
-	const { currentMatch, getRemoteCurrentMatch } = useCurrentMatchStore();
 	const {
 		playerSeasons,
 		getRemoteSeasons,
@@ -78,6 +77,7 @@ export default function PlayerPage() {
 	return (
 		<div className={styles.playerPage}>
 			<div className={styles.content}>
+				<div className={styles.playerInfo}>
 				<div className={styles.selectWrapper}>
 					<div className={styles.select}>
 						<p>Season</p>
@@ -92,7 +92,6 @@ export default function PlayerPage() {
 						/>
 					</div>
 				</div>
-				<div className={styles.playerInfo}>
 					<PlayerInfo player={currentPlayer} />
 				</div>
 				<div className={styles.buttons}>

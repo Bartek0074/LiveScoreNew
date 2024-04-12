@@ -2,11 +2,12 @@ import { create } from 'zustand';
 
 import { fetchFromAPI } from '../helpers/fetchFromApi';
 
-import { CurrentPlayer } from './types';
+import { CurrentPlayer, CurrentPlayerTransfers } from './types';
 
 interface CurrentPlayerStoreState {
 	playerSeasons: number[];
 	currentPlayer: CurrentPlayer;
+	currentPlayerTransfers: CurrentPlayerTransfers;
 }
 
 interface CurrentPlayerStoreActions {
@@ -20,6 +21,7 @@ export const useCurrentPlayerStore = create<CurrentPlayerStore>(
 	(set, getState) => ({
 		playerSeasons: [] as number[],
 		currentPlayer: {} as CurrentPlayer,
+		currentPlayerTransfers: {} as CurrentPlayerTransfers,
 
 		getRemoteSeasons: async (id: number) => {
 			const data = await fetchFromAPI(`/players/seasons?player=${id}`);
@@ -28,9 +30,17 @@ export const useCurrentPlayerStore = create<CurrentPlayerStore>(
 		},
 
 		getRemoteCurrentPlayer: async (id: number, season: number) => {
-			const data = await fetchFromAPI(`/players?id=${id}&season=${season}`);
+			const currentPlayerData = await fetchFromAPI(
+				`/players?id=${id}&season=${season}`
+			);
+			const currentPlayerTransfersData = await fetchFromAPI(
+				`/transfers?player=${id}`
+			);
 
-			set({ currentPlayer: data.response[0] });
+			set({
+				currentPlayer: currentPlayerData.response[0],
+				currentPlayerTransfers: currentPlayerTransfersData.response[0],
+			});
 		},
 	})
 );
