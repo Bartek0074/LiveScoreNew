@@ -11,6 +11,7 @@ import { useCurrentMatchStore } from '../../data/currentMatch/store';
 import { useCurrentPlayerStore } from '../../data/currentPlayer/store';
 
 import { PlayerPageFilters } from '../../utils/playerMatchFilters';
+import PlayerInfo from './PlayerInfo/PlayerInfo';
 
 const buttons = [
 	{ text: 'Stats', filter: PlayerPageFilters.Stats },
@@ -85,11 +86,14 @@ export default function PlayerPage() {
 							onChange={(value) => setSeason(value)}
 							options={playerSeasons.map((season) => ({
 								value: season,
-								label: season,
+								label: `${season}/${season + 1}`,
 							}))}
 							size='small'
 						/>
 					</div>
+				</div>
+				<div className={styles.playerInfo}>
+					<PlayerInfo player={currentPlayer} />
 				</div>
 				<div className={styles.buttons}>
 					{buttons.map((button, index) => (

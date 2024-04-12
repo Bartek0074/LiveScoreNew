@@ -1,0 +1,107 @@
+@use '../../../styles/variables' as *;
+
+.playerInfo {
+	display: flex;
+	flex-direction: column;
+	.name {
+		margin-bottom: 8px;
+		font-size: 20px;
+		color: $grayFontColor;
+		font-weight: 300;
+		max-width: calc(100% - 100px);
+		.lastName {
+			color: $blackFontColor;
+			font-weight: 350;
+		}
+	}
+	.content {
+		display: flex;
+		.image {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100px;
+			height: 100px;
+			border-radius: 5px;
+			border: 2px solid $secondaryColorAlpha;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+			}
+		}
+		.infos {
+			display: flex;
+			flex-direction: column;
+			margin-left: 8px;
+			.info {
+				display: flex;
+				flex-direction: row;
+				.label {
+					font-size: 13px;
+					color: $blackFontColor;
+					font-weight: 300;
+					margin-right: 2px;
+				}
+				.value {
+					font-size: 13px;
+					color: $blackFontColor;
+					font-weight: 400;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.playerInfo {
+		.name {
+			font-size: 24px;
+		}
+		.content {
+			.image {
+				width: 125px;
+				height: 125px;
+			}
+
+			.infos {
+				gap: 4px;
+				.info {
+					.label {
+						font-size: 14px;
+						margin-right: 4px;
+					}
+					.value {
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+}
+@media (min-width: 768px) {
+	.playerInfo {
+		.content {
+			.image {
+				width: 150px;
+				height: 150px;
+			}
+			.infos {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 20px 20px 20px;
+				column-gap: 16px;
+				.info {
+					&:nth-child(2) {
+						grid-area:  2 / 1 / 3 / 2;
+					}
+					&:nth-child(3) {
+						grid-area:  3 / 1 / 4 / 2;
+					}
+				}
+			}
+		}
+	}
+}
