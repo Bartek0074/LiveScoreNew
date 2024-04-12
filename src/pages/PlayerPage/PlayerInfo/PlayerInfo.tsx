@@ -15,15 +15,13 @@ interface Props {
 export default function PlayerInfo({ player }: Props) {
 	const { countries } = useCountriesStore();
 
-	console.log(player)
-
 	const nationalityFlag = returnCountryFlag(
 		countries,
-		player.player.nationality
+		player?.player?.nationality
 	);
 	const birthPlaceFlag = returnCountryFlag(
 		countries,
-		player.player.birth.country
+		player?.player?.birth?.country
 	);
 
 	return (
