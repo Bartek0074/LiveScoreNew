@@ -21,7 +21,7 @@ interface PlayerProps {
 	photo: string;
 }
 
-interface CurrentPlayerStatistic {
+export interface CurrentPlayerStatistic {
 	team: {
 		id: number;
 		name: string;

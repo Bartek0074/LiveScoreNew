@@ -7,6 +7,9 @@ interface Props {
 		| 'secondYellowCard'
 		| 'redCard'
 		| 'goal'
+		| 'shoe'
+		| 'clock'
+		| 'assist'
 		| 'ownGoal'
 		| 'penalty'
 		| 'penaltyMissed'
@@ -24,12 +27,15 @@ const svgSources = {
 	secondYellowCard: '../icons/secondYellowCard.svg',
 	redCard: '../icons/redCard.svg',
 	goal: '../icons/goal.svg',
+	assist: '../icons/assist.svg',
 	ownGoal: '../icons/ownGoal.svg',
 	penalty: '../icons/penalty.svg',
 	penaltyMissed: '../icons/penaltyMissed.svg',
 	substitution: '../icons/substitution.svg',
 	offside: '../icons/offside.svg',
 	var: '../icons/var.svg',
+	shoe: '../icons/shoe.svg',
+	clock: '../icons/clock.svg',
 };
 
 export default function MatchIcon({
@@ -55,8 +61,14 @@ export default function MatchIcon({
 						? svgSources.secondYellowCard
 						: type === 'redCard'
 						? svgSources.redCard
+						: type === 'shoe'
+						? svgSources.shoe
+						: type === 'clock'
+						? svgSources.clock
 						: type === 'goal'
 						? svgSources.goal
+						: type === 'assist'
+						? svgSources.assist
 						: type === 'ownGoal'
 						? svgSources.ownGoal
 						: type === 'penalty'

@@ -1,0 +1,122 @@
+@use '../../styles/variables' as *;
+
+.statistics {
+	width: 100%;
+	.notAvailable {
+		text-align: center;
+		font-size: 14px;
+		color: $grayFontColor;
+	}
+	.table {
+		overflow-x: scroll;
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			thead {
+				background-color: $secondaryColorAlpha;
+				tr {
+					color: $grayFontColor;
+					th {
+						padding: 6px 4px;
+						font-weight: 400;
+						text-transform: uppercase;
+						font-size: 12px;
+						letter-spacing: 0.5px;
+						&:first-child {
+							text-align: left;
+							padding-left: 12px;
+						}
+					}
+					.icon {
+						width: fit-content;
+						margin: 0 auto;
+					}
+				}
+			}
+			tbody {
+				tr {
+					height: 100%;
+					border-bottom: 1px solid $grayBorderColor;
+					&:hover {
+						background-color: $shadowHoverColor;
+					}
+					td {
+						height: 100%;
+						padding: 6px 4px;
+						text-align: center;
+						font-size: 12px;
+						letter-spacing: 0.25px;
+						color: $grayFontColor;
+						&:first-child {
+							width: 100px;
+							font-weight: 500;
+						}
+					}
+					.league {
+						display: flex;
+						align-items: center;
+						.logo {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							height: 20px;
+							min-width: 32px;
+							margin-right: 2px;
+							img {
+								height: 100%;
+							}
+						}
+						p {
+							color: $blackFontColor;
+							white-space: nowrap;
+							max-width: 100px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+						}
+					}
+					.rating {
+						margin: 0 auto;
+						width: fit-content;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.statistics {
+		.notAvailable {
+			font-size: 16px;
+		}
+		.table {
+			table {
+				thead {
+					tr {
+						th {
+							padding: 8px 4px;
+							font-size: 13px;
+						}
+					}
+				}
+				tbody {
+					tr {
+						td {
+							font-size: 13px;
+						}
+						.league {
+							.logo {
+								height: 24px;
+								min-width: 40px;
+								margin-right: 3px;
+							}
+							p {
+								max-width: 160px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

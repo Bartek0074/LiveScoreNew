@@ -7,12 +7,12 @@ import LoadingBall from '../../components/LoadingBall/LoadingBall';
 import Button from '../../components/Button/Button';
 import { Select } from 'antd';
 
-import { useCurrentMatchStore } from '../../data/currentMatch/store';
 import { useCurrentPlayerStore } from '../../data/currentPlayer/store';
 
 import { PlayerPageFilters } from '../../utils/playerMatchFilters';
 import PlayerInfo from './PlayerInfo/PlayerInfo';
 import TransferList from '../../components/TransferList/TransferList';
+import PlayerStatistics from '../../components/PlayerStatistics/PlayerStatistics';
 
 const buttons = [
 	{ text: 'Stats', filter: PlayerPageFilters.Stats },
@@ -83,20 +83,6 @@ export default function PlayerPage() {
 		<div className={styles.playerPage}>
 			<div className={styles.content}>
 				<div className={styles.playerInfo}>
-					<div className={styles.selectWrapper}>
-						<div className={styles.select}>
-							<p>Season</p>
-							<Select
-								value={season}
-								onChange={(value) => setSeason(value)}
-								options={playerSeasons.map((season) => ({
-									value: season,
-									label: `${season}/${season + 1}`,
-								}))}
-								size='small'
-							/>
-						</div>
-					</div>
 					<PlayerInfo player={currentPlayer} />
 				</div>
 				<div className={styles.buttons}>
@@ -110,7 +96,23 @@ export default function PlayerPage() {
 					))}
 				</div>
 				<div className={styles.filteredContent}>
-					{filter === PlayerPageFilters.Stats && <div>Stats</div>}
+					{filter === PlayerPageFilters.Stats && (
+						<div className={styles.stats}>
+							<PlayerStatistics statistics={currentPlayer.statistics} />
+							<div className={styles.select}>
+								<p>Select season:</p>
+								<Select
+									value={season}
+									onChange={(value) => setSeason(value)}
+									options={playerSeasons.map((season) => ({
+										value: season,
+										label: `${season}/${season + 1}`,
+									}))}
+									size='small'
+								/>
+							</div>
+						</div>
+					)}
 					{filter === PlayerPageFilters.Transfers && (
 						<TransferList transfers={currentPlayerTransfers.transfers} />
 					)}

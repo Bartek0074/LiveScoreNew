@@ -17,7 +17,7 @@ export default function PlayerInfo({ player }: Props) {
 	const { countries } = useCountriesStore();
 	const { currentPlayerTransfers } = useCurrentPlayerStore();
 
-	const currentClub = currentPlayerTransfers?.transfers[0].teams.in;
+	const currentClub = currentPlayerTransfers?.transfers[0]?.teams?.in;
 
 	const nationalityFlag = returnCountryFlag(
 		countries,
