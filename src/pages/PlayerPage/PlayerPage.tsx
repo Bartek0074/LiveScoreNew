@@ -12,6 +12,7 @@ import { useCurrentPlayerStore } from '../../data/currentPlayer/store';
 
 import { PlayerPageFilters } from '../../utils/playerMatchFilters';
 import PlayerInfo from './PlayerInfo/PlayerInfo';
+import TransferList from '../../components/TransferList/TransferList';
 
 const buttons = [
 	{ text: 'Stats', filter: PlayerPageFilters.Stats },
@@ -25,6 +26,7 @@ export default function PlayerPage() {
 		playerSeasons,
 		getRemoteSeasons,
 		currentPlayer,
+		currentPlayerTransfers,
 		getRemoteCurrentPlayer,
 	} = useCurrentPlayerStore();
 
@@ -78,20 +80,20 @@ export default function PlayerPage() {
 		<div className={styles.playerPage}>
 			<div className={styles.content}>
 				<div className={styles.playerInfo}>
-				<div className={styles.selectWrapper}>
-					<div className={styles.select}>
-						<p>Season</p>
-						<Select
-							value={season}
-							onChange={(value) => setSeason(value)}
-							options={playerSeasons.map((season) => ({
-								value: season,
-								label: `${season}/${season + 1}`,
-							}))}
-							size='small'
-						/>
+					<div className={styles.selectWrapper}>
+						<div className={styles.select}>
+							<p>Season</p>
+							<Select
+								value={season}
+								onChange={(value) => setSeason(value)}
+								options={playerSeasons.map((season) => ({
+									value: season,
+									label: `${season}/${season + 1}`,
+								}))}
+								size='small'
+							/>
+						</div>
 					</div>
-				</div>
 					<PlayerInfo player={currentPlayer} />
 				</div>
 				<div className={styles.buttons}>
@@ -104,7 +106,12 @@ export default function PlayerPage() {
 						/>
 					))}
 				</div>
-				<div className={styles.filteredContent}></div>
+				<div className={styles.filteredContent}>
+					{filter === PlayerPageFilters.Stats && <div>Stats</div>}
+					{filter === PlayerPageFilters.Transfers && (
+						<TransferList transfers={currentPlayerTransfers.transfers} />
+					)}
+				</div>
 			</div>
 		</div>
 	);

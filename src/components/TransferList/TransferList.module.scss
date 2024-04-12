@@ -1,0 +1,98 @@
+@use '../../styles/variables' as *;
+
+.transfers {
+	width: 100%;
+
+	.table {
+		overflow-x: scroll;
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			thead {
+				background-color: $secondaryColorAlpha;
+				tr {
+					color: $grayFontColor;
+					th {
+						padding: 6px 4px;
+						font-weight: 400;
+						text-transform: uppercase;
+						font-size: 12px;
+						letter-spacing: 0.5px;
+					}
+				}
+			}
+			tbody {
+				tr {
+					height: 100%;
+					border-bottom: 1px solid $grayBorderColor;
+					&:hover {
+						background-color: $shadowHoverColor;
+					}
+					td {
+						height: 100%;
+						padding: 6px 4px;
+						text-align: center;
+						font-size: 12px;
+						letter-spacing: 0.25px;
+						color: $grayFontColor;
+						&:first-child {
+							width: 100px;
+							font-weight: 500;
+						}
+					}
+					.team {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						.logo {
+							height: 20px;
+							margin-right: 2px;
+							cursor: pointer;
+							img {
+								height: 100%;
+							}
+						}
+						p {
+							color: $blackFontColor;
+							cursor: pointer;
+							&:hover {
+								color: $blackFontColorHover;
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 576px) {
+	.transfers {
+		.table {
+			table {
+				thead {
+					tr {
+						th {
+							padding: 8px 4px;
+							font-size: 13px;
+						}
+					}
+				}
+				tbody {
+					tr {
+						td {
+							font-size: 13px;
+						}
+						.team {
+							.logo {
+								height: 24px;
+								margin-right: 3px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

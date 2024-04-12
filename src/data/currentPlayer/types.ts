@@ -106,7 +106,7 @@ export interface CurrentPlayerTransfers {
 	transfers: TransferProps[];
 }
 
-interface TransferProps {
+export interface TransferProps {
 	date: string;
 	type: string;
 
