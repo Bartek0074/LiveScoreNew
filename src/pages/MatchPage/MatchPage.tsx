@@ -1,7 +1,9 @@
 import styles from './MatchPage.module.scss';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
+import { Result as AntdResult } from 'antd';
 
 import LoadingBall from '../../components/LoadingBall/LoadingBall';
 import Button from '../../components/Button/Button';
@@ -14,6 +16,7 @@ import MatchLineups from './MatchLineups/MatchLineups';
 import MatchStandings from './MatchStandings/MatchStandings';
 
 import { useCurrentMatchStore } from '../../data/currentMatch/store';
+import { AppRoutes } from '../../utils/routes';
 
 import { MatchPageFilters } from '../../utils/matchPageFilters';
 
@@ -26,6 +29,7 @@ const buttons = [
 
 export default function MatchPage() {
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	const { currentMatch, getRemoteCurrentMatch } = useCurrentMatchStore();
 
@@ -34,6 +38,10 @@ export default function MatchPage() {
 	);
 
 	const [loading, setLoading] = useState(true);
+
+	const navToHome = () => {
+		navigate(AppRoutes.home);
+	};
 
 	useEffect(() => {
 		let fetchDataInterval: NodeJS.Timeout;
@@ -64,8 +72,6 @@ export default function MatchPage() {
 		};
 	}, [id]);
 
-	const { league } = currentMatch;
-
 	if (loading) {
 		return (
 			<div className={styles.matchPage}>
@@ -75,6 +81,23 @@ export default function MatchPage() {
 			</div>
 		);
 	}
+
+	if (currentMatch === undefined || !currentMatch) {
+		return (
+			<div className={styles.matchPage}>
+				<div className={styles.notFoundInfo}>
+					<AntdResult
+						status='404'
+						title='Match not found'
+						subTitle='The match you are looking for does not exist.'
+						extra={<Button text='Go home' onClick={navToHome} />}
+					/>
+				</div>
+			</div>
+		);
+	}
+
+	const { league } = currentMatch;
 
 	return (
 		<div className={styles.matchPage}>
