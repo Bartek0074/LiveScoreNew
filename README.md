@@ -1,10 +1,10 @@
 # LiveScoreNew 
 
-Here's a LiveScore web app designed for football enthusiasts, allowing you to check current match results and predict outcomes. Utilizing the [API-Football](https://www.api-football.com/), you can quickly access match details, league tables, results, and statistics for your favorite team and others. LiveScoreNew also enables you to personalize your experience by adding leagues to your favorites through the use of cookies.
+Here's a LiveScore web app designed for football enthusiasts, allowing you to check current match results and predict outcomes. You don't need to refresh the page as API queries are sent every 30 seconds, allowing for real-time tracking of scores. Utilizing the [API-Football](https://www.api-football.com/), you can quickly access match details, league tables, results, and statistics for your favorite team and others. LiveScoreNew also enables you to personalize your experience by adding leagues to your favorites through the use of cookies.
 
 This version of the app introduces a range of upgrades, such as integration with Zustand and TypeScript, [link](https://github.com/Bartek0074/LiveScore/) to old version.
 
-**NOTE:**App is still under development. Plans include adding a dedicated page for leagues, clubs etc.
+**NOTE:** App is still under development. Plans include adding a dedicated page for leagues, clubs etc.
 
 ## Demo
 
