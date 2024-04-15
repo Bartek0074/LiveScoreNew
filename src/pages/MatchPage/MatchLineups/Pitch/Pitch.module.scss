@@ -44,7 +44,7 @@
 		top: 0;
 		.line {
 			.player {
-				animation: entryHome 0.75s ease;
+				animation: entryHomeMobile 0.75s ease;
 			}
 		}
 	}
@@ -53,7 +53,7 @@
 		bottom: 0;
 		.line {
 			.player {
-				animation: entryAway 0.75s ease;
+				animation: entryAwayMobile 0.75s ease;
 			}
 		}
 	}
@@ -86,15 +86,47 @@
 		}
 		.home {
 			left: 0;
+			.line {
+				.player {
+					animation: entryHomeDesktop 0.75s ease;
+				}
+			}
 		}
 		.away {
 			flex-direction: row-reverse;
 			left: 50%;
+			.line {
+				.player {
+					animation: entryAwayDesktop 0.75s ease;
+				}
+			}
 		}
 	}
 }
 
-@keyframes entryHome {
+@keyframes entryHomeMobile {
+	from {
+		opacity: 0;
+		transform: translateY(-25px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes entryAwayMobile {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes entryHomeDesktop {
 	from {
 		opacity: 0;
 		transform: translateX(-25px);
@@ -105,7 +137,7 @@
 	}
 }
 
-@keyframes entryAway {
+@keyframes entryAwayDesktop {
 	from {
 		opacity: 0;
 		transform: translateX(25px);
