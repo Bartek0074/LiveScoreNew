@@ -10,7 +10,9 @@ This version of the app introduces a range of upgrades, such as integration with
 
 Live Demo [here](https://bartek0074-livescorenew.netlify.app/).
 
-![livescoregif1](https://user-images.githubusercontent.com/88652468/210113897-1912b06d-a5a5-433a-89e0-c7cf7c061d0c.gif)
+![LiveScoreNewGif1](https://github.com/Bartek0074/LiveScoreNew/assets/88652468/66e2df4b-a60a-4f6d-aafe-5eaa5da4266f)
+
+![LiveScoreNewGif2](https://github.com/Bartek0074/LiveScoreNew/assets/88652468/4f58f549-b718-45a0-b321-2f73dd993eba)
 ## Instructions
 
 First clone this repository.
@@ -19,7 +21,7 @@ First clone this repository.
 $ git clone https://github.com/Bartek0074/LiveScoreNew.git
 ```
 
-Get a free api key from API-Football. Get it [here](https://www.api-football.com/).
+Get api key from API-Football. Get it [here](https://www.api-football.com/).
 
 Create a .env file in the root of your project folder and add the following.
 
@@ -43,7 +45,7 @@ $ npm start # or yarn start
 ## Technologies
 
 - React,
-- Typescript,
+- TypeScript,
 - Zustand,
 - SCSS,
 - React Router.
