@@ -42,10 +42,20 @@
 	}
 	.home {
 		top: 0;
+		.line {
+			.player {
+				animation: entryHome 0.75s ease;
+			}
+		}
 	}
 	.away {
 		flex-direction: column-reverse;
 		bottom: 0;
+		.line {
+			.player {
+				animation: entryAway 0.75s ease;
+			}
+		}
 	}
 }
 
@@ -81,5 +91,27 @@
 			flex-direction: row-reverse;
 			left: 50%;
 		}
+	}
+}
+
+@keyframes entryHome {
+	from {
+		opacity: 0;
+		transform: translateX(-25px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes entryAway {
+	from {
+		opacity: 0;
+		transform: translateX(25px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
