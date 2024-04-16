@@ -22,10 +22,6 @@ export const useLeaguesStore = create<LeaguesStore>((set, getState) => ({
 			const currentYear = new Date().getFullYear();
 			const leagues = await fetchFromAPI(`leagues?season=${currentYear - 1}`);
 
-			leagues.response = leagues.response.filter(
-				(league: CountryLeague) => league.league.type === 'League'
-			);
-
 			set({ leagues: leagues.response });
 			return leagues.response;
 		} catch (error) {

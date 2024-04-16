@@ -15,7 +15,7 @@ import { useCountriesStore } from '../data/countries/store';
 
 import { IoLogoGithub } from 'react-icons/io5';
 
-const defaultPinnedLeagues = [39, 140, 78, 135, 61, 106, 107];
+const defaultPinnedLeagues = [2, 3, 848, 39, 140, 78, 135, 61, 106, 107];
 
 export default function MainLayout() {
 	const navigate = useNavigate();
