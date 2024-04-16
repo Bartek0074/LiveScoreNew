@@ -12,7 +12,7 @@ Live Demo [here](https://bartek0074-livescorenew.netlify.app/).
 
 ![LiveScoreNewGif1](https://github.com/Bartek0074/LiveScoreNew/assets/88652468/66e2df4b-a60a-4f6d-aafe-5eaa5da4266f)
 
-![LiveScoreNewGif2](https://github.com/Bartek0074/LiveScoreNew/assets/88652468/4f58f549-b718-45a0-b321-2f73dd993eba)
+![LiveScoreNewGif2](https://github.com/Bartek0074/LiveScoreNew/assets/88652468/a2bb77e8-3700-4f02-b5d3-477700b62408)
 ## Instructions
 
 First clone this repository.
