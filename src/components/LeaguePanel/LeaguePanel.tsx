@@ -33,7 +33,7 @@ export default function LeaguePanel({ league }: Props) {
 			<div className={styles.leftSection}>
 				<div className={styles.flag}>
 					<ImageComponent
-						src={league.flag}
+						src={league.flag || '../icons/worldFlag.svg'}
 						alt={`${league.country} flag`}
 						loaderSize={12}
 					/>

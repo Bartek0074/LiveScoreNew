@@ -22,7 +22,7 @@ export default function LeagueInfo({ league }: Props) {
 		<div className={styles.leagueInfo}>
 			<div className={styles.flag}>
 				<ImageComponent
-					src={league.flag}
+					src={league.flag || '../icons/worldFlag.svg'}
 					alt={`${league.country} flag`}
 					loaderSize={12}
 				/>

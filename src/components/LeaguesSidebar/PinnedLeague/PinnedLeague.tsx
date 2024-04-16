@@ -36,7 +36,7 @@ export default function PinnedLeague({ league }: Props) {
 				<div className={styles.leftSection}>
 					<div className={styles.flag}>
 						<ImageComponent
-							src={league.country.flag}
+							src={league.country.flag || '../icons/worldFlag.svg'}
 							alt={`Flag of ${league.country.name}`}
 							loaderSize={12}
 						/>
