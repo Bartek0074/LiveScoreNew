@@ -4,7 +4,7 @@ Here's a LiveScore web app designed for football enthusiasts, allowing you to ch
 
 This version of the app introduces a range of upgrades, such as integration with Zustand and TypeScript, [link](https://github.com/Bartek0074/LiveScore/) to old version.
 
-**NOTE:** App is still under development. Plans include adding a dedicated page for leagues, clubs etc.
+**NOTE:** App is still under development. Plans include adding a dedicated page for leagues, clubs etc. Because of the limitations of the free API plan, not everything can work properly..
 
 ## Demo
 
